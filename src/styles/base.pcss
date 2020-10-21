@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+
+body {
+  @apply text-blue-800;
+}
+
+h1 {
+  @apply text-3xl font-bold mb-2;
+}
+
+h2 {
+  @apply text-2xl font-bold mb-2;
+}
+
+h3 {
+  @apply text-xl font-bold mb-2;
+}
+
+.btn {
+  @apply px-4 py-2 font-bold rounded;
+
+  &.btn-primary {
+    @apply text-white bg-blue-600 outline-none;
+
+    &:active {
+      @apply bg-blue-700;
+    }
+
+    &:focus {
+      box-shadow: inset 0 3px 5px rgba(0, 28, 90, 0.125),
+        0 0 0 0.2rem rgba(38, 99, 230, 0.5);
+    }
+  }
+}
+
+a {
+  @apply text-blue-600;
+}
+
+@tailwind utilities;
