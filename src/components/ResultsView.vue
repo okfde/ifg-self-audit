@@ -3,11 +3,32 @@
     <h2 v-if="title" v-text="title" />
     <div v-html="body" class="mb-2" />
 
+    <div class="barometer">
+      <img
+        src="../assets/circle.svg"
+        class="needle"
+        :style="{
+          marginLeft: barometerPosition
+        }"
+      />
+    </div>
+
     <p>
-      Von {{ totalPoints }} erreichbaren Punkten haben Sie
-      {{ collectedPoints }} Punkt{{ collectedPoints === 1 ? '' : 'e' }}
-      erreicht. Um mehr Transparenz zu schaffen, nehmen Sie sich folgende Punkte
-      zu Herzen:
+      Von <strong>{{ totalPoints }} erreichbaren</strong> Punkten haben Sie
+      <strong
+        >{{ collectedPoints }} Punkt{{
+          collectedPoints === 1 ? '' : 'e'
+        }}
+        erreicht</strong
+      >.
+
+      <span v-if="improvements.length === 0">
+        Sie sind bereits auf dem besten Stand!
+      </span>
+      <span v-else>
+        Um mehr Transparenz zu schaffen, nehmen Sie sich folgende Punkte zu
+        Herzen:
+      </span>
     </p>
 
     <ul class="mt-8">
@@ -17,8 +38,12 @@
       </li>
     </ul>
 
-    <button @click="print" class="btn btn-primary print:hidden">
+    <button @click="print" class="btn btn-primary print:hidden mt-4">
       Ergebnis drucken
+    </button>
+
+    <button @click="restart" class="btn btn-secondary print:hidden mt-4 ml-2">
+      Neu beginnen
     </button>
   </div>
 </template>
@@ -47,12 +72,37 @@ export default {
     },
     collectedPoints() {
       return this.answers.reduce((c, a) => (c += a.choice?.points || 0), 0);
+    },
+    barometerPosition() {
+      const percentage = this.collectedPoints / this.totalPoints;
+      return `calc(${percentage * 100}% - ${percentage}rem)`;
     }
   },
   methods: {
     print() {
       window.print();
+    },
+    restart() {
+      if (window.confirm('Wollen Sie wirklich neustarten?')) {
+        this.$emit('restart');
+      }
     }
   }
 };
 </script>
+
+<style lang="postcss" scoped>
+.barometer {
+  @apply w-full h-4 rounded my-4;
+  background: linear-gradient(
+    to right,
+    theme('colors.red'),
+    theme('colors.yellow.300'),
+    theme('colors.green')
+  );
+
+  .needle {
+    @apply h-4;
+  }
+}
+</style>

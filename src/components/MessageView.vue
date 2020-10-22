@@ -9,7 +9,11 @@
     <OptionsView :options="options" v-model="choice" />
 
     <div class="flex mt-12">
-      <button @click="$emit('previous')" class="btn btn-primary" v-if="!first">
+      <button
+        @click="$emit('previous')"
+        class="btn btn-secondary"
+        v-if="!first"
+      >
         Zurück
       </button>
 

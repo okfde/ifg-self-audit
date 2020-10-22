@@ -18,10 +18,32 @@ h3 {
 }
 
 .btn {
-  @apply px-4 py-2 font-bold rounded;
+  @apply px-4 py-1 font-semibold rounded;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
   &.btn-primary {
     @apply text-white bg-blue-600 outline-none;
+
+    &:active {
+      @apply bg-blue-700;
+    }
+
+    &:focus {
+      box-shadow: inset 0 3px 5px rgba(0, 28, 90, 0.125),
+        0 0 0 0.2rem rgba(38, 99, 230, 0.5);
+    }
+  }
+
+  &.btn-secondary {
+    @apply text-blue-600 bg-white outline-none;
+    border: 1px solid theme('colors.blue.600');
+
+    &:hover,
+    &:active,
+    &:focus {
+      @apply text-white bg-blue-600;
+    }
 
     &:active {
       @apply bg-blue-700;

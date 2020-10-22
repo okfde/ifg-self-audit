@@ -1,5 +1,5 @@
 module.exports = {
-  purge: ['./src/**/*.html', './src/**/*.vue', './src/**/*.jsx'],
+  purge: ['./public/**/*.html', './src/**/*.vue'],
   theme: {
     extend: {
       colors: {
@@ -31,7 +31,9 @@ module.exports = {
           100: '#FDE9AE',
           200: '#FACE44',
           300: '#E8B106'
-        }
+        },
+        red: '#FF5029',
+        green: '#3BB273'
       },
       screens: {
         print: { raw: 'print' }

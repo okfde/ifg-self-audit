@@ -4,6 +4,11 @@ const yamlFront = require('yaml-front-matter');
 const marked = require('marked');
 const defaults = require('./data/defaults.json');
 
+const random = () =>
+  Math.random()
+    .toString(36)
+    .substring(7);
+
 async function main() {
   const dir = path.join(__dirname, 'data', 'questions');
   const files = (await fs.readdir(dir))
@@ -14,9 +19,7 @@ async function main() {
     const data = await fs.readFile(file, 'utf-8');
     const { __content, ...meta } = yamlFront.loadFront(data);
     const body = marked(__content.trim());
-    const id = Math.random()
-      .toString(36)
-      .substring(7);
+    const id = random();
 
     return { ...defaults, ...meta, id, body };
   });
@@ -27,8 +30,10 @@ async function main() {
       (a += Math.max(...((q.options && q.options.map(o => o.points)) || [0]))),
     0
   );
+
+  const version = random();
   const out = path.join(__dirname, 'data', 'questionaire.json');
-  await fs.writeJSON(out, { questionaire, totalPoints });
+  await fs.writeJSON(out, { questionaire, totalPoints, version });
 }
 
 main();
