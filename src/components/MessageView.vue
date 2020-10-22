@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2 v-if="title" v-text="title" />
-    <div v-html="body" class="mb-4" />
+    <ContentContainer :body="body" class="mb-4" />
 
     <div v-if="error" class="mb-2 mt-8">
       <p><strong>Fehler:</strong> Bitte wählen Sie eine der Optionen.</p>
@@ -25,11 +25,12 @@
 </template>
 
 <script>
+import ContentContainer from './ContentContainer';
 import OptionsView from './OptionsView';
 
 export default {
   props: ['title', 'body', 'options', 'first'],
-  components: { OptionsView },
+  components: { ContentContainer, OptionsView },
   data() {
     return { choice: undefined, error: false };
   },

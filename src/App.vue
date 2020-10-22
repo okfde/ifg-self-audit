@@ -8,7 +8,7 @@
       </span>
     </header>
 
-    <div class="bg-gray-100 p-8">
+    <div class="bg-gray-100 p-8 print:bg-none">
       <ResultsView
         v-if="done"
         v-bind="resultMessage"
@@ -32,7 +32,7 @@
         <a href="https://fragdenstaat.de">FragDenStaat</a>.
       </span>
 
-      <span class="ml-auto">
+      <span class="ml-auto print:hidden">
         <a href="https://fragdenstaat.de/impressum">Impressum</a>
       </span>
     </footer>

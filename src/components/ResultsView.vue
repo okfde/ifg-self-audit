@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2 v-if="title" v-text="title" />
-    <div v-html="body" class="mb-2" />
+    <ContentContainer :body="body" class="mb-2" />
 
     <div class="barometer">
       <img
@@ -49,8 +49,11 @@
 </template>
 
 <script>
+import ContentContainer from './ContentContainer';
+
 export default {
   props: ['title', 'body', 'totalPoints', 'answers', 'questionaire'],
+  components: { ContentContainer },
   computed: {
     improvements() {
       const qAndA = this.answers
