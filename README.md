@@ -39,3 +39,7 @@ Mit `options` können die Multiple-Choice-Fragen festgelegt werden - wird es weg
 Wird nicht die Option mit der höchsten Punktzahl ausgewählt, erscheint in der Auswahlseite der unter `problem` gesetzte Text sowie der mit `guidance` bestimmte Hilfstext.
 
 Je höher die optionale Zahl `priority`, desto weiter oben erscheint das Problem in der Auswertung. Sie beträgt standardmäßig `0`.
+
+## Punktesystem
+
+Die Maximalpunktzahl ergibt sich aus den addierten Höchstpunktzahlen aller Fragen. Die niedrigste Punktzahl ist 0, selbst wenn Minuspunkte erzielt wurden.

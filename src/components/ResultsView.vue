@@ -74,7 +74,8 @@ export default {
         .sort((a, b) => b.question.priority - a.question.priority);
     },
     collectedPoints() {
-      return this.answers.reduce((c, a) => (c += a.choice?.points || 0), 0);
+      const p = this.answers.reduce((c, a) => (c += a.choice?.points || 0), 0);
+      return Math.max(p, 0); // never go below 0 points
     },
     barometerPosition() {
       const percentage = this.collectedPoints / this.totalPoints;
