@@ -1,3 +1,3 @@
 module.exports = {
-  publicPath: '/self-audit/'
+  publicPath: '/ifg-self-audit/'
 };
