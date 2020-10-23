@@ -12,7 +12,7 @@ Entwicklungshinweis: Der Fragenkatalog wird von einem Node-Skript aus den Markdo
 
 ## Fragen hinzufügen
 
-Die Fragen liegen unter `src/data/questions` im Markdown-Format. Die Reihenfolge wird bestimmt durch die alphabetische Sortierung der Dateinamen (`A.md` kommt vor `B.md`).
+Die Fragen liegen unter [`src/data/questions`](https://github.com/okfde/ifg-self-audit/tree/master/src/data/questions) im Markdown-Format. Die Reihenfolge wird bestimmt durch die alphabetische Sortierung der Dateinamen (`A.md` kommt vor `B.md`).
 
 Beispieldatei:
 
@@ -40,7 +40,7 @@ Ein IFG ist aber wichtig.
 
 Dabei ist `title` der Titel der Frage. Nach dem Frontmatter kann ein Beschreibungstext zur Frage geschrieben werden.
 
-Mit `options` können die Multiple-Choice-Fragen festgelegt werden - wird es weggelassen, greifen die Standardoptionen, die unter `src/data/defaults.json` definiert sind. Die Punkte werden dem Gesamtpunktestand addiert, negative Werte sind möglich. Sollen keine Antwortoptionen angezeigt werden, kann `options: false` verwendet werden (etwa bei der Willkommensnachricht).
+Mit `options` können die Multiple-Choice-Fragen festgelegt werden - wird es weggelassen, greifen die Standardoptionen, die unter [`src/data/defaults.yml`](https://github.com/okfde/ifg-self-audit/blob/master/src/data/defaults.yml) definiert sind. Die Punkte werden dem Gesamtpunktestand addiert, negative Werte sind möglich. Sollen keine Antwortoptionen angezeigt werden, kann `options: false` verwendet werden (etwa bei der Willkommensnachricht).
 
 Wird nicht die Option mit der höchsten Punktzahl ausgewählt, erscheint in der Auswertung der nach `---` geschriebene Hilfstext.
 
