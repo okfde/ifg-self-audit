@@ -12,6 +12,6 @@
 
 <script>
 export default {
-  props: ['first']
+  props: ['first', 'isSection']
 };
 </script>

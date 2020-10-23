@@ -1,0 +1,63 @@
+<template>
+  <div class="bg-gray-100 print:bg-transparent mb-12">
+    <div
+      class="h-1 bg-gray-600 transition-all duration-200 ease-out print:hidden"
+      :style="{
+        width: `${progress}%`
+      }"
+    />
+
+    <div class="p-8 pt-6 print:px-0 overflow-hidden">
+      <transition
+        :name="transition === 'next' ? 'slide' : 'slide-back'"
+        mode="out-in"
+      >
+        <ResultsView
+          v-if="done"
+          v-bind="resultMessage"
+          v-on="$listeners"
+          :totalPoints="totalPoints"
+          :answers="answers"
+          :key="question.id"
+        />
+
+        <SectionView
+          v-else-if="section"
+          v-on="$listeners"
+          :section="section"
+          :key="question.id"
+        />
+
+        <MessageView
+          v-else
+          v-bind="question"
+          v-on="$listeners"
+          :isSection="false"
+          :first="currentQuestion === 0"
+          :key="question.id"
+        />
+      </transition>
+    </div>
+  </div>
+</template>
+
+<script>
+import MessageView from './MessageView';
+import SectionView from './SectionView';
+import ResultsView from './ResultsView';
+
+export default {
+  props: [
+    'question',
+    'currentQuestion',
+    'section',
+    'answers',
+    'totalPoints',
+    'resultMessage',
+    'progress',
+    'done',
+    'transition'
+  ],
+  components: { MessageView, SectionView, ResultsView }
+};
+</script>

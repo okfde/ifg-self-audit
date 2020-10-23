@@ -21,7 +21,9 @@ export default {
     radios() {
       return this.options?.map(o => ({
         ...o,
-        id: Math.random().toString(36).substring(7)
+        id: Math.random()
+          .toString(36)
+          .substring(7)
       }));
     }
   },
