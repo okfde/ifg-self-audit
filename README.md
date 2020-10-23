@@ -26,7 +26,7 @@ options: # optional
     points: 0
 priority: 2 # optional
 id: '1.2' # optional
-if: "'1.1' == 3" # optional
+condition: "'1.1' == 3" # optional
 ---
 
 IFG steht für _Informationsfreiheitsgesetz_.
@@ -46,7 +46,7 @@ Wird nicht die Option mit der höchsten Punktzahl ausgewählt, erscheint in der 
 
 Je höher die optionale Zahl `priority`, desto weiter oben erscheint das Problem in der Auswertung. Sie beträgt standardmäßig `0`.
 
-Mit `if` kann eine Bedingung formuliert werden. Diese besteht aus der `id` einer vorangegangenen Frage, einem Operator `==` `!=` `<=` `>=`, sowie einer Punktzahl. Die Frage wird nur gezeigt, wenn die Punktzahl der vorangeganenen Frage mit Bedingung übereinstimmt. Die `id` ist standardmäßig der Dateiname ohne `.md`.
+Mit `condition` kann eine Bedingung formuliert werden. Diese besteht aus der `id` einer vorangegangenen Frage, einem Operator `==` `!=` `<=` `>=`, sowie einer Punktzahl. Die Frage wird nur gezeigt, wenn die Punktzahl der vorangeganenen Frage mit Bedingung übereinstimmt. Die `id` ist standardmäßig der Dateiname ohne `.md`.
 
 ## Punktesystem
 
