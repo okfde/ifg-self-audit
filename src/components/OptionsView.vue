@@ -1,5 +1,6 @@
 <template>
   <div v-if="options" class="my-6">
+    <slot />
     <div v-for="option in radios" :key="option.id" class="flex mb-1">
       <input type="radio" :value="option.id" v-model="choice" :id="option.id" />
       <label :for="option.id" class="ml-2 flex-1">{{ option.text }}</label>

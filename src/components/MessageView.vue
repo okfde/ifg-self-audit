@@ -5,10 +5,11 @@
 
     <ContentContainer :body="body" class="mb-4" />
 
-    <div v-if="error" class="mb-2 mt-8">
-      <p><strong>Fehler:</strong> Bitte wählen Sie eine der Optionen.</p>
-    </div>
-    <OptionsView :options="options" v-model="choice" />
+    <OptionsView :options="options" v-model="choice">
+      <div v-if="error" class="mb-1 text-red">
+        <p><strong>Fehler:</strong> Bitte wählen Sie eine der Optionen.</p>
+      </div>
+    </OptionsView>
 
     <div class="flex mt-8">
       <button
