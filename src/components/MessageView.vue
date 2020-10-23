@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { sections } from '../data/questionaire.json';
+import { sections } from '../data/questionnaire.json';
 import ContentContainer from './ContentContainer';
 import OptionsView from './OptionsView';
 import MessageNavigation from './MessageNavigation';

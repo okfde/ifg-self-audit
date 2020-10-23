@@ -50,13 +50,13 @@
 </template>
 
 <script>
-import { questionaire, totalPoints } from '../data/questionaire.json';
+import { questionnaire, totalPoints } from '../data/questionnaire.json';
 import ContentContainer from './ContentContainer';
 
 export default {
   props: ['title', 'body', 'answers'],
   data() {
-    return { questionaire, totalPoints };
+    return { questionnaire, totalPoints };
   },
   components: { ContentContainer },
   computed: {
@@ -64,7 +64,7 @@ export default {
       return this.answers
         .map(answer => ({
           answer,
-          question: this.questionaire.find(q => q.id === answer.id)
+          question: this.questionnaire.find(q => q.id === answer.id)
         }))
         .filter(({ question }) => question.options && question.guidance)
         .filter(({ answer, question }) => {

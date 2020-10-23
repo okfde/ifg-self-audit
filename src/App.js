@@ -1,18 +1,18 @@
 import MessageView from './components/MessageView';
 import SectionView from './components/SectionView';
 import ResultsView from './components/ResultsView';
-import { questionaire, version } from './data/questionaire.json';
+import { questionnaire, version } from './data/questionnaire.json';
 import evaluateCondition from './evaluateCondition';
 import uniq from 'lodash.uniq';
 
-const resultMessage = questionaire.pop();
+const resultMessage = questionnaire.pop();
 
 export default {
   name: 'App',
   components: { MessageView, SectionView, ResultsView },
   data() {
     return {
-      questionaire,
+      questionnaire,
       currentQuestion: 0,
       answers: [],
       resultMessage
@@ -43,13 +43,13 @@ export default {
       }
 
       // check if the next question doesn't apply
-      const next = this.questionaire[this.currentQuestion];
+      const next = this.questionnaire[this.currentQuestion];
       if (!evaluateCondition(next, this.answers)) this.nextQuestion();
     },
     previousQuestion() {
       if (this.currentQuestion > 0) {
         this.currentQuestion--;
-        const previous = this.questionaire[this.currentQuestion];
+        const previous = this.questionnaire[this.currentQuestion];
         const id = this.answers.findIndex(a => a.id === previous.id);
         if (id) {
           this.answers.splice(id, 1);
@@ -57,8 +57,10 @@ export default {
 
         const { section } = previous;
         if (section) {
-          const first = this.questionaire.findIndex(q => q.section === section);
-          const members = this.questionaire.filter(q => q.section === section);
+          const first = this.questionnaire.findIndex(
+            q => q.section === section
+          );
+          const members = this.questionnaire.filter(q => q.section === section);
           this.currentQuestion = first;
 
           // delete answers
@@ -88,30 +90,30 @@ export default {
   },
   computed: {
     question() {
-      return this.questionaire[this.currentQuestion];
+      return this.questionnaire[this.currentQuestion];
     },
     done() {
-      return this.currentQuestion === this.questionaire.length;
+      return this.currentQuestion === this.questionnaire.length;
     },
     totalQuestions() {
-      const sections = this.questionaire.map(q => q.section).filter(Boolean);
+      const sections = this.questionnaire.map(q => q.section).filter(Boolean);
       const uniqSections = uniq(sections);
-      return this.questionaire.length - sections.length + uniqSections.length;
+      return this.questionnaire.length - sections.length + uniqSections.length;
     },
     answeredQuestions() {
-      const answered = this.questionaire.slice(0, this.currentQuestion);
+      const answered = this.questionnaire.slice(0, this.currentQuestion);
       const sections = answered.map(q => q.section).filter(Boolean);
       const uniqSections = uniq(sections);
 
       return this.currentQuestion - sections.length + uniqSections.length;
     },
     progress() {
-      return (this.currentQuestion / this.questionaire.length) * 100;
+      return (this.currentQuestion / this.questionnaire.length) * 100;
     },
     section() {
       const { section } = this.question;
       if (section) {
-        return this.questionaire.filter(q => q.section === section);
+        return this.questionnaire.filter(q => q.section === section);
       }
 
       return false;

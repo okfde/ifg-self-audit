@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build:questionaire": "node src/buildQuestionaire.js",
-    "build": "yarn run build:questionaire && vue-cli-service build",
-    "watch:questionaire": "onchange 'src/data/**/*.md' 'src/data/**/*.yml' -- yarn build:questionaire",
+    "build:questionnaire": "node src/buildQuestionnaire.js",
+    "build": "yarn run build:questionnaire && vue-cli-service build",
+    "watch:questionnaire": "onchange 'src/data/**/*.md' 'src/data/**/*.yml' -- yarn build:questionnaire",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {

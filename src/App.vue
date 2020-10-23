@@ -26,7 +26,7 @@
           v-if="done"
           v-bind="resultMessage"
           :totalPoints="totalPoints"
-          :questionaire="questionaire"
+          :questionnaire="questionnaire"
           :answers="answers"
           @restart="restart"
         />

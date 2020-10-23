@@ -33,16 +33,16 @@ async function main() {
     return { ...defaults, ...meta, id, body, guidance };
   });
 
-  const questionaire = await Promise.all(queue);
-  const totalPoints = questionaire.reduce(
+  const questionnaire = await Promise.all(queue);
+  const totalPoints = questionnaire.reduce(
     (a, q) =>
       (a += Math.max(...((q.options && q.options.map(o => o.points)) || [0]))),
     0
   );
 
   const version = random();
-  const out = path.join(dataDir, 'questionaire.json');
-  await fs.writeJSON(out, { questionaire, totalPoints, version, sections });
+  const out = path.join(dataDir, 'questionnaire.json');
+  await fs.writeJSON(out, { questionnaire, totalPoints, version, sections });
 }
 
-main().then(() => console.log('Built questionaire.'));
+main().then(() => console.log('Built questionnaire.'));

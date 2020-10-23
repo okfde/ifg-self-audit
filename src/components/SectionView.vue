@@ -18,7 +18,7 @@
 <script>
 import MessageView from './MessageView';
 import MessageNavigation from './MessageNavigation';
-import { sections } from '../data/questionaire.json';
+import { sections } from '../data/questionnaire.json';
 
 export default {
   props: ['section'],
