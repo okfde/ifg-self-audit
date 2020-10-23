@@ -27,6 +27,7 @@ options: # optional
 priority: 2 # optional
 id: '1.2' # optional
 condition: "'1.1' == 3" # optional
+section: '1' # optional
 ---
 
 IFG steht für _Informationsfreiheitsgesetz_.
@@ -47,6 +48,8 @@ Wird nicht die Option mit der höchsten Punktzahl ausgewählt, erscheint in der 
 Je höher die optionale Zahl `priority`, desto weiter oben erscheint das Problem in der Auswertung. Sie beträgt standardmäßig `0`.
 
 Mit `condition` kann eine Bedingung formuliert werden. Diese besteht aus der `id` einer vorangegangenen Frage, einem Operator `==` `!=` `<=` `>=`, sowie einer Punktzahl. Die Frage wird nur gezeigt, wenn die Punktzahl der vorangeganenen Frage mit Bedingung übereinstimmt. Die `id` ist standardmäßig der Dateiname ohne `.md`.
+
+Zudem können mit `section` mehrere Fragen gruppiert werden - alle Fragen mit derselben Angabe erscheinen in einem Schritt. Der mit `section` referenzierte Sektionstitel kann unter [`src/data/sections.yml`](https://github.com/okfde/ifg-self-audit/blob/master/src/data/sections.yml) gesetzt werden.
 
 ## Punktesystem
 

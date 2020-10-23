@@ -5,11 +5,11 @@
         <div class="print:ml-auto print:order-2">
           <img src="./assets/logo.svg" class="w-14" />
         </div>
-        <h1 class="mt-12 print:mt-0">IFG Self Audit</h1>
+        <h1 class="mt-12 print:mt-0">IFG Self-Audit</h1>
       </div>
 
       <span v-if="!done">
-        Frage {{ currentQuestion + 1 }} von {{ questionaire.length }}
+        Frage {{ answeredQuestions + 1 }} von {{ totalQuestions }}
       </span>
     </header>
 
@@ -30,12 +30,20 @@
           :answers="answers"
           @restart="restart"
         />
+
+        <SectionView
+          v-else-if="section"
+          :section="section"
+          @next="nextQuestion"
+          @previous="previousQuestion"
+        />
+
         <MessageView
           v-else
           v-bind="question"
+          :first="currentQuestion === 0"
           @next="nextQuestion"
           @previous="previousQuestion"
-          :first="currentQuestion === 0"
         />
       </div>
     </div>
@@ -53,84 +61,4 @@
   </div>
 </template>
 
-<script>
-import MessageView from './components/MessageView';
-import ResultsView from './components/ResultsView';
-import { questionaire, version } from './data/questionaire.json';
-import evaluateCondition from './evaluateCondition';
-
-const resultMessage = questionaire.pop();
-
-export default {
-  name: 'App',
-  components: { MessageView, ResultsView },
-  data() {
-    return {
-      questionaire,
-      currentQuestion: 0,
-      answers: [],
-      resultMessage
-    };
-  },
-  created() {
-    try {
-      const stored = localStorage.getItem('store');
-      const data = JSON.parse(stored);
-      if (data.version === version) {
-        this.currentQuestion = data.currentQuestion;
-        this.answers = data.answers;
-      }
-    } catch {} // eslint-disable-line no-empty
-  },
-  methods: {
-    nextQuestion(choice) {
-      this.answers.push({ id: this.question.id, choice });
-      this.currentQuestion++;
-
-      // check if the next question doesn't apply
-      const next = this.questionaire[this.currentQuestion];
-      if (!evaluateCondition(next, this.answers)) this.nextQuestion();
-    },
-    previousQuestion() {
-      if (this.currentQuestion > 0) {
-        this.currentQuestion--;
-        const previous = this.questionaire[this.currentQuestion];
-        const id = this.answers.findIndex(a => a.id === previous.id);
-        if (id) {
-          this.answers.splice(id, 1);
-        }
-
-        if (!evaluateCondition(previous, this.answers)) this.previousQuestion();
-      }
-    },
-    restart() {
-      this.answers = [];
-      this.currentQuestion = 0;
-    },
-    updateStore() {
-      console.log('updated');
-      const store = {
-        currentQuestion: this.currentQuestion,
-        answers: this.answers,
-        version
-      };
-      localStorage.setItem('store', JSON.stringify(store));
-    }
-  },
-  computed: {
-    question() {
-      return this.questionaire[this.currentQuestion];
-    },
-    done() {
-      return this.currentQuestion === this.questionaire.length;
-    },
-    progress() {
-      return (this.currentQuestion / this.questionaire.length) * 100;
-    }
-  },
-  watch: {
-    currentQuestion: 'updateStore',
-    answers: 'updateStore'
-  }
-};
-</script>
+<script src="./App.js"></script>

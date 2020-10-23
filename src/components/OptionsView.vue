@@ -1,6 +1,9 @@
 <template>
   <div v-if="options" class="my-6">
-    <slot />
+    <div v-if="error" class="mb-1 text-red">
+      <p><strong>Fehler:</strong> Bitte wählen Sie eine der Optionen.</p>
+    </div>
+
     <div v-for="option in radios" :key="option.id" class="flex mb-1">
       <input type="radio" :value="option.id" v-model="choice" :id="option.id" />
       <label :for="option.id" class="ml-2 flex-1">{{ option.text }}</label>
@@ -10,7 +13,7 @@
 
 <script>
 export default {
-  props: ['options'],
+  props: ['options', 'error'],
   data() {
     return { choice: '' };
   },
@@ -32,3 +35,9 @@ export default {
   }
 };
 </script>
+
+<style lang="postcss" scoped>
+input:checked + label {
+  @apply font-semibold;
+}
+</style>

@@ -21,8 +21,13 @@ h3 {
   @apply text-xl font-bold mb-2;
 }
 
+p strong {
+  @apply font-semibold;
+}
+
 .btn {
   @apply px-4 py-1 font-semibold rounded;
+  border: 1px solid theme('colors.blue.600');
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
@@ -41,7 +46,6 @@ h3 {
 
   &.btn-secondary {
     @apply text-blue-600 bg-white outline-none;
-    border: 1px solid theme('colors.blue.600');
 
     &:hover,
     &:active,

@@ -14,18 +14,17 @@
     </div>
 
     <p>
-      Von <strong>{{ totalPoints }} erreichbaren</strong> Punkten haben Sie
-      <strong
-        >{{ collectedPoints }} Punkt{{
+      Von
+      <strong>{{ totalPoints }} erreichbaren</strong>
+      Punkten haben Sie
+      <strong>
+        {{ collectedPoints }} Punkt{{
           collectedPoints === 1 ? '' : 'e'
         }}
         erreicht</strong
       >.
 
-      <span v-if="improvements.length === 0">
-        Sie sind bereits auf dem besten Stand!
-      </span>
-      <span v-else>
+      <span v-if="improvements.length !== 0">
         Um mehr Transparenz zu schaffen, nehmen Sie sich folgende Punkte zu
         Herzen:
       </span>
