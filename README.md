@@ -19,26 +19,34 @@ Beispieldatei:
 ```markdown
 ---
 title: Haben Sie ein IFG?
-options:
+options: # optional
   - text: Ja
     points: 1
   - text: Nein
     points: 0
-problem: Sie haben kein IFG.
-guidance: Schaffen Sie ein IFG.
-priority: 2
+priority: 2 # optional
+id: '1.2' # optional
+if: "'1.1' == 3" # optional
 ---
 
 IFG steht für _Informationsfreiheitsgesetz_.
+
+---
+
+## Sie haben kein IFG.
+
+Ein IFG ist aber wichtig.
 ```
 
 Dabei ist `title` der Titel der Frage. Nach dem Frontmatter kann ein Beschreibungstext zur Frage geschrieben werden.
 
 Mit `options` können die Multiple-Choice-Fragen festgelegt werden - wird es weggelassen, greifen die Standardoptionen, die unter `src/data/defaults.json` definiert sind. Die Punkte werden dem Gesamtpunktestand addiert, negative Werte sind möglich. Sollen keine Antwortoptionen angezeigt werden, kann `options: false` verwendet werden (etwa bei der Willkommensnachricht).
 
-Wird nicht die Option mit der höchsten Punktzahl ausgewählt, erscheint in der Auswahlseite der unter `problem` gesetzte Text sowie der mit `guidance` bestimmte Hilfstext.
+Wird nicht die Option mit der höchsten Punktzahl ausgewählt, erscheint in der Auswertung der nach `---` geschriebene Hilfstext.
 
 Je höher die optionale Zahl `priority`, desto weiter oben erscheint das Problem in der Auswertung. Sie beträgt standardmäßig `0`.
+
+Mit `if` kann eine Bedingung formuliert werden. Diese besteht aus der `id` einer vorangegangenen Frage, einem Operator `==` `!=` `<=` `>=`, sowie einer Punktzahl. Die Frage wird nur gezeigt, wenn die Punktzahl der vorangeganenen Frage mit Bedingung übereinstimmt. Die `id` ist standardmäßig der Dateiname ohne `.md`.
 
 ## Punktesystem
 

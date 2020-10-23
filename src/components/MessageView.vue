@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h2 v-if="title" v-text="title" />
+    <h2 v-text="sectionTitle || title" />
+    <h3 v-if="sectionTitle" v-text="title" />
+
     <ContentContainer :body="body" class="mb-4" />
 
     <div v-if="error" class="mb-2 mt-8">
@@ -8,7 +10,7 @@
     </div>
     <OptionsView :options="options" v-model="choice" />
 
-    <div class="flex mt-12">
+    <div class="flex mt-8">
       <button
         @click="$emit('previous')"
         class="btn btn-secondary"
@@ -25,14 +27,20 @@
 </template>
 
 <script>
+import { sections } from '../data/questionaire.json';
 import ContentContainer from './ContentContainer';
 import OptionsView from './OptionsView';
 
 export default {
-  props: ['title', 'body', 'options', 'first'],
+  props: ['id', 'title', 'body', 'options', 'section', 'first'],
   components: { ContentContainer, OptionsView },
   data() {
     return { choice: undefined, error: false };
+  },
+  computed: {
+    sectionTitle() {
+      return this.section && sections[this.section];
+    }
   },
   methods: {
     next() {
@@ -44,8 +52,9 @@ export default {
     }
   },
   watch: {
-    title() {
+    id() {
       this.error = false;
+      this.choice = undefined;
     }
   }
 };

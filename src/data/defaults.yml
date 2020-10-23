@@ -1,0 +1,6 @@
+options:
+  - text: Ja
+    points: 1
+  - text: Nein
+    points: 0
+priority: 0

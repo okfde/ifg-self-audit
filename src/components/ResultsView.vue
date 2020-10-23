@@ -32,10 +32,12 @@
     </p>
 
     <ul class="mt-8">
-      <li v-for="({ question }, i) in improvements" :key="i" class="mb-4">
-        <h3>{{ question.problem }}</h3>
-        <p>{{ question.guidance }}</p>
-      </li>
+      <li
+        v-for="({ question }, i) in improvements"
+        :key="i"
+        class="mb-4"
+        v-html="question.guidance"
+      />
     </ul>
 
     <button @click="print" class="btn btn-primary print:hidden mt-4">
@@ -49,23 +51,23 @@
 </template>
 
 <script>
+import { questionaire, totalPoints } from '../data/questionaire.json';
 import ContentContainer from './ContentContainer';
 
 export default {
-  props: ['title', 'body', 'totalPoints', 'answers', 'questionaire'],
+  props: ['title', 'body', 'answers'],
+  data() {
+    return { questionaire, totalPoints };
+  },
   components: { ContentContainer },
   computed: {
     improvements() {
-      const qAndA = this.answers
+      return this.answers
         .map(answer => ({
           answer,
           question: this.questionaire.find(q => q.id === answer.id)
         }))
-        .filter(({ question }) => question.options);
-
-      console.log(qAndA);
-
-      return qAndA
+        .filter(({ question }) => question.options && question.guidance)
         .filter(({ answer, question }) => {
           const best = Math.max(...question.options.map(o => o.points));
 
