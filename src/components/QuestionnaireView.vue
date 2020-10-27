@@ -14,7 +14,6 @@
       >
         <ResultsView
           v-if="done"
-          v-bind="resultMessage"
           v-on="$listeners"
           :totalPoints="totalPoints"
           :answers="answers"
@@ -53,7 +52,6 @@ export default {
     'section',
     'answers',
     'totalPoints',
-    'resultMessage',
     'progress',
     'done',
     'transition'

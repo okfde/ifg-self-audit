@@ -5,8 +5,6 @@ import QuestionnaireView from './components/QuestionnaireView';
 import { questionnaire, version } from './data/questionnaire.json';
 import evaluateCondition from './evaluateCondition';
 
-const resultMessage = questionnaire.pop();
-
 export default {
   name: 'App',
   components: { SiteHeader, SiteFooter, QuestionnaireView },
@@ -14,7 +12,6 @@ export default {
     return {
       currentQuestion: 0,
       answers: [],
-      resultMessage,
       transition: 'next'
     };
   },
@@ -31,7 +28,8 @@ export default {
   methods: {
     nextQuestion(choice) {
       this.transition = 'next';
-
+      console.log('curr', this.question);
+      console.log('next real', questionnaire[this.currentQuestion + 1]);
       if (!this.section) {
         this.answers.push({ id: this.question.id, choice });
         this.currentQuestion++;
@@ -46,7 +44,8 @@ export default {
 
       // check if the next question doesn't apply
       const next = questionnaire[this.currentQuestion];
-      if (!evaluateCondition(next, this.answers)) this.nextQuestion();
+      console.log('next', next);
+      if (next && !evaluateCondition(next, this.answers)) this.nextQuestion();
     },
     previousQuestion() {
       this.transition = 'previous';
@@ -92,7 +91,7 @@ export default {
   },
   computed: {
     question() {
-      return questionnaire[this.currentQuestion];
+      return questionnaire[this.currentQuestion] || {};
     },
     done() {
       return this.currentQuestion === questionnaire.length;
@@ -101,6 +100,8 @@ export default {
       return (this.currentQuestion / questionnaire.length) * 100;
     },
     section() {
+      if (!this.question) return false;
+
       const { section } = this.question;
       if (section) {
         return questionnaire.filter(q => q.section === section);

@@ -53,10 +53,12 @@
 import { questionnaire, totalPoints } from '../data/questionnaire.json';
 import ContentContainer from './ContentContainer';
 
+const { title, body } = questionnaire.pop();
+
 export default {
-  props: ['title', 'body', 'answers'],
+  props: ['answers'],
   data() {
-    return { questionnaire, totalPoints };
+    return { title, body, totalPoints };
   },
   components: { ContentContainer },
   computed: {
@@ -64,7 +66,7 @@ export default {
       return this.answers
         .map(answer => ({
           answer,
-          question: this.questionnaire.find(q => q.id === answer.id)
+          question: questionnaire.find(q => q.id === answer.id)
         }))
         .filter(({ question }) => question.options && question.guidance)
         .filter(({ answer, question }) => {
