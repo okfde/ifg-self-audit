@@ -2,7 +2,8 @@ import SiteHeader from './components/SiteHeader';
 import SiteFooter from './components/SiteFooter';
 import QuestionnaireView from './components/QuestionnaireView';
 
-import { questionnaire, version } from './data/questionnaire.json';
+import { questionnaire } from './data/questionnaire.json';
+import { version } from '../package.json';
 import evaluateCondition from './evaluateCondition';
 
 export default {

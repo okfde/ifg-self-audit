@@ -40,9 +40,8 @@ async function main() {
     0
   );
 
-  const version = random();
   const out = path.join(dataDir, 'questionnaire.json');
-  await fs.writeJSON(out, { questionnaire, totalPoints, version, sections });
+  await fs.writeJSON(out, { questionnaire, totalPoints, sections });
 }
 
 main().then(() => console.log('Built questionnaire.'));
