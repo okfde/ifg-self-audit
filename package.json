@@ -4,17 +4,20 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "build:app": "vue-cli-service build",
     "build:questionnaire": "node src/buildQuestionnaire.js",
-    "build": "yarn run build:questionnaire && vue-cli-service build",
+    "build:excel": "node src/buildExcel.js",
+    "build": "yarn run build:questionnaire && yarn build:app && yarn run build:excel",
     "watch:questionnaire": "onchange 'src/data/**/*.md' 'src/data/**/*.yml' -- yarn build:questionnaire",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "excel4node": "^1.7.2",
     "fontsource-inter": "^3.0.5",
     "fs-extra": "^9.0.1",
     "js-yaml": "^3.14.0",
-    "lodash.uniq": "^4.5.0",
+    "lodash": "^4.17.20",
     "marked": "^1.2.2",
     "tailwindcss": "^1.9.5",
     "vue": "^2.6.11",

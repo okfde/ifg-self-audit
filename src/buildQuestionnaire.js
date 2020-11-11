@@ -4,6 +4,7 @@ const yamlFront = require('yaml-front-matter');
 const yaml = require('js-yaml');
 const marked = require('marked');
 const dataDir = path.join(__dirname, 'data');
+const __main__ = require.main === module;
 
 const random = () =>
   Math.random()
@@ -40,8 +41,18 @@ async function main() {
     0
   );
 
-  const out = path.join(dataDir, 'questionnaire.json');
-  await fs.writeJSON(out, { questionnaire, totalPoints, sections });
+  const output = { questionnaire, totalPoints, sections };
+
+  if (__main__) {
+    const outfile = path.join(dataDir, 'questionnaire.json');
+    await fs.writeJSON(outfile, output);
+  } else {
+    return output;
+  }
 }
 
-main().then(() => console.log('Built questionnaire.'));
+if (__main__) {
+  main().then(() => console.log('Built questionnaire.'));
+}
+
+module.exports = main;

@@ -15,7 +15,7 @@
 
 <script>
 import { questionnaire } from '../data/questionnaire.json';
-import uniq from 'lodash.uniq';
+import uniq from 'lodash/uniq';
 
 export default {
   props: ['currentQuestion', 'done'],
