@@ -6,11 +6,6 @@ const marked = require('marked');
 const dataDir = path.join(__dirname, 'data');
 const __main__ = require.main === module;
 
-const random = () =>
-  Math.random()
-    .toString(36)
-    .substring(7);
-
 async function readYaml(file) {
   const d = await fs.readFile(path.join(dataDir, file), 'utf-8');
   return yaml.load(d);

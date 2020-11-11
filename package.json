@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
     "build:app": "vue-cli-service build",
     "build:questionnaire": "node src/buildQuestionnaire.js",
     "build:excel": "node src/buildExcel.js",
-    "build": "yarn run build:questionnaire && yarn build:app && yarn run build:excel",
-    "watch:questionnaire": "onchange 'src/data/**/*.md' 'src/data/**/*.yml' -- yarn build:questionnaire",
+    "build": "yarn build:questionnaire && yarn build:app && yarn build:excel",
+    "dev": "yarn dev:app & yarn dev:questionnaire",
+    "dev:app": "vue-cli-service serve",
+    "dev:questionnaire": "onchange 'src/data/**/*.md' 'src/data/**/*.yml' -- yarn build:questionnaire",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {

@@ -21,4 +21,4 @@ Es basiert auf dem [“Self Assessment Toolkit”](https://ico.org.uk/about-the-
 - Aus den Ergebnissen kann interner Verbesserungsbedarf abgeleitet werden.
 - Antworten werden nicht an uns oder Dritte weitergegeben.
 
-Sie können die Bearbeitung des Self Audits jederzeit pausieren, die Daten werden auf Ihrem Rechner lokal gesichert.
+Sie können die Bearbeitung des Self Audits jederzeit pausieren, die Daten werden auf Ihrem Rechner lokal gesichert. Alternativ stellen wir Ihnen auch eine reduzierte Version des Self-Audits [als Excel-Formular](questionnaire.xlsx) zur Verfügung.
