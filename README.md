@@ -4,11 +4,9 @@
 
 ```bash
 yarn install
-yarn serve # Devserver starten
+yarn dev # Devserver starten
 yarn build # Productionbuild
 ```
-
-Entwicklungshinweis: Der Fragenkatalog wird von einem Node-Skript aus den Markdown-Dateien zusammengebaut. Nach Veränderung der Markdowndateien muss daher `yarn build:questionnaire` ausgeführt werden.
 
 ## Fragen hinzufügen
 
