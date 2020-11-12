@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build:app": "vue-cli-service build",
+    "build:app": "vue-cli-service build --modern",
     "build:questionnaire": "node src/buildQuestionnaire.js",
     "build:excel": "node src/buildExcel.js",
     "build": "yarn build:questionnaire && yarn build:app && yarn build:excel",

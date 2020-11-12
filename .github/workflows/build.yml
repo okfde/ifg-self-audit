@@ -18,7 +18,7 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       - run: yarn install
       - name: Build
-        run: yarn build --modern
+        run: yarn build
       - name: Deploy
         uses: peaceiris/actions-github-pages@v3.1.12
         with:
