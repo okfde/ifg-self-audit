@@ -17,6 +17,9 @@ async function main() {
   const ws = wb.addWorksheet('Fragebogen', {
     sheetView: {
       showGridLines: false
+    },
+    pageSetup: {
+      orientation: 'landscape'
     }
   });
 
@@ -38,6 +41,7 @@ async function main() {
     font: { size: 16 },
     alignment: { wrapText: false }
   });
+  const h2 = _.merge({}, h1, { font: { size: 14 } });
 
   ws.addImage({
     path: logo,
@@ -64,11 +68,21 @@ async function main() {
   questionnaire.shift();
   questionnaire.pop();
 
-  ws.column(2).setWidth(70);
+  ws.column(2).setWidth(55);
   ws.column(4).hide();
-  ws.column(5).setWidth(50);
+  ws.column(5).setWidth(35);
 
-  let row = 4;
+  ws.cell(4, 2)
+    .string('Frage')
+    .style(h2);
+  ws.cell(4, 3)
+    .string('Antwort')
+    .style(h2);
+  ws.cell(4, 5)
+    .string('Antwortmöglichkeit')
+    .style(h2);
+
+  let row = 5;
   for (const question of questionnaire) {
     const [, part, title] = /((?:Teil \d+)|(?:\d\.?)+):? (.*)/.exec(
       question.title
