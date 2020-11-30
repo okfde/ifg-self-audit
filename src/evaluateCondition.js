@@ -4,10 +4,7 @@ export default function(question, answers) {
 
   if (!id || !op || !com) return true;
 
-  console.log([id, op, com]);
-
   const p = answers.find(a => a.id === id)?.choice?.points;
-  console.log('p', p);
   let state = true;
 
   switch (op) {
@@ -24,6 +21,6 @@ export default function(question, answers) {
       state = p >= com;
       break;
   }
-  console.log('state', state);
+
   return state;
 }

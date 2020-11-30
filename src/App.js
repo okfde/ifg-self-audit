@@ -29,23 +29,22 @@ export default {
   methods: {
     nextQuestion(choice) {
       this.transition = 'next';
-      console.log('curr', this.question);
-      console.log('next real', questionnaire[this.currentQuestion + 1]);
+
       if (!this.section) {
         this.answers.push({ id: this.question.id, choice });
         this.currentQuestion++;
       } else {
-        const answers = this.section.map(q => ({
+        const answers = this.section.map((q, i) => ({
           id: q.id,
-          choice: choice.find(c => c.id === q.id)
+          choice: choice[i]
         }));
+
         this.answers.push(...answers);
         this.currentQuestion += this.section.length;
       }
 
       // check if the next question doesn't apply
       const next = questionnaire[this.currentQuestion];
-      console.log('next', next);
       if (next && !evaluateCondition(next, this.answers)) this.nextQuestion();
     },
     previousQuestion() {

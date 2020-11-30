@@ -1,6 +1,6 @@
 <template>
   <div class="app container">
-    <SiteHeader :currentQuestion="currentQuestion" />
+    <SiteHeader :currentQuestion="currentQuestion" :done="done" />
 
     <QuestionnaireView
       v-bind="all"

@@ -4,7 +4,10 @@
       Zurück
     </button>
 
-    <button @click="$emit('next')" class="btn btn-primary ml-auto">
+    <button
+      @click="$emit('next')" class="btn btn-primary ml-auto"
+      :class="{ 'btn-error': error }"
+    >
       Weiter
     </button>
   </div>
@@ -12,6 +15,6 @@
 
 <script>
 export default {
-  props: ['first', 'isSection']
+  props: ['first', 'isSection', 'error']
 };
 </script>

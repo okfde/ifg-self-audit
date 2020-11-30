@@ -62,6 +62,22 @@ p strong {
         0 0 0 0.2rem rgba(38, 99, 230, 0.5);
     }
   }
+
+  &.btn-error {
+    @apply bg-red text-white outline-none;
+    border: 1px solid theme('colors.red');
+
+    &:hover,
+    &:active,
+    &:focus {
+      @apply bg-red text-white;
+    }
+
+    &:focus {
+      box-shadow: inset 0 3px 5px rgba(255, 80, 41, 0.125),
+        0 0 0 0.2rem rgba(255, 80, 41, 0.5);
+    }
+  }
 }
 
 a {

@@ -8,7 +8,7 @@
     </div>
 
     <span v-if="!done">
-      Frage {{ answeredQuestions + 1 }} von {{ totalQuestions }}
+      Teil {{ answeredQuestions + 1 }} von {{ totalQuestions }}
     </span>
   </header>
 </template>
