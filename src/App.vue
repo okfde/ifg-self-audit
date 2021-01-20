@@ -1,5 +1,5 @@
 <template>
-  <div class="app container">
+  <div class="app">
     <SiteHeader :currentQuestion="currentQuestion" :done="done" />
 
     <QuestionnaireView
@@ -15,12 +15,4 @@
 
 <style lang="postcss" scoped>
 @import './styles/slide-transition.pcss';
-
-.app {
-  @apply flex flex-col min-h-screen max-w-5xl mx-auto px-4;
-
-  @media print {
-    @apply max-w-none p-0;
-  }
-}
 </style>
