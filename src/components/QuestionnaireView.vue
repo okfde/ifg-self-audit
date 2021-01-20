@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-100 print:bg-transparent mb-12">
+  <div class="bg-gray-100 print:bg-transparent">
     <div
       class="h-1 bg-gray-600 transition-all duration-200 ease-out print:hidden"
       :style="{

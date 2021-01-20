@@ -1,5 +1,4 @@
 import SiteHeader from './components/SiteHeader';
-import SiteFooter from './components/SiteFooter';
 import QuestionnaireView from './components/QuestionnaireView';
 
 import { questionnaire } from './data/questionnaire.json';
@@ -8,7 +7,7 @@ import evaluateCondition from './evaluateCondition';
 
 export default {
   name: 'App',
-  components: { SiteHeader, SiteFooter, QuestionnaireView },
+  components: { SiteHeader, QuestionnaireView },
   data() {
     return {
       currentQuestion: 0,

@@ -1,11 +1,6 @@
 <template>
   <header class="mb-12 print:mb-4">
-    <div class="print:flex">
-      <div class="print:ml-auto print:order-2">
-        <img src="../assets/logo.svg" class="w-14" />
-      </div>
-      <h1 class="mt-12 print:mt-0">IFG Self-Audit</h1>
-    </div>
+    <h1 class="print:mt-0">IFG Self-Audit</h1>
 
     <span v-if="!done">
       Teil {{ answeredQuestions + 1 }} von {{ totalQuestions }}

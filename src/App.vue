@@ -8,8 +8,6 @@
       @previous="previousQuestion"
       @restart="restart"
     />
-
-    <SiteFooter class="mt-auto" />
   </div>
 </template>
 
@@ -19,7 +17,7 @@
 @import './styles/slide-transition.pcss';
 
 .app {
-  @apply flex flex-col min-h-screen max-w-5xl mx-auto py-8 px-4;
+  @apply flex flex-col min-h-screen max-w-5xl mx-auto px-4;
 
   @media print {
     @apply max-w-none p-0;
