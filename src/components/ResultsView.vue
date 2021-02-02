@@ -90,7 +90,7 @@ export default {
       window.print();
     },
     restart() {
-      if (window.confirm('Wollen Sie wirklich neustarten?')) {
+      if (window.confirm('Möchten Sie wirklich neu starten? Sie verlieren die eingegebenen Daten.')) {
         this.$emit('restart');
       }
     }
