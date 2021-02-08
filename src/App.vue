@@ -1,13 +1,8 @@
 <template>
   <div class="app">
-    <SiteHeader :currentQuestion="currentQuestion" :done="done" />
+    <SiteHeader />
 
-    <QuestionnaireView
-      v-bind="all"
-      @next="nextQuestion"
-      @previous="previousQuestion"
-      @restart="restart"
-    />
+    <QuestionnaireView />
   </div>
 </template>
 

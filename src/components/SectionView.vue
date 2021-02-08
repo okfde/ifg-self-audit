@@ -12,7 +12,7 @@
     />
 
     <MessageNavigation
-      @previous="$emit('previous')"
+      @previous="$store.dispatch('previousQuestion')"
       @next="next"
       :error="errors.length !== 0"
     />
@@ -23,14 +23,15 @@
 import MessageView from './MessageView';
 import MessageNavigation from './MessageNavigation';
 import { sections } from '../data/questionnaire.json';
+import { mapGetters } from 'vuex';
 
 export default {
-  props: ['section'],
   data() {
     return { choices: [], errors: [] };
   },
   components: { MessageView, MessageNavigation },
   computed: {
+    ...mapGetters(['section']),
     sectionTitle() {
       return sections[this.section[0].section];
     }
@@ -52,13 +53,14 @@ export default {
       return false;
     },
     next() {
-      if (this.checkForErrors()) {
-        this.$emit('next', this.choices);
-      }
+      /* if (this.checkForErrors()) { */
+      this.$store.dispatch('nextQuestion', this.choices);
+      /* } */
     }
   },
   watch: {
     choices() {
+      console.log('watch');
       if (this.errors.length !== 0) {
         this.checkForErrors();
       }

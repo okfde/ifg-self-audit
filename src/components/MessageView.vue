@@ -13,45 +13,30 @@
 
     <MessageNavigation
       v-if="!isSection"
-      :first="first"
-      @previous="$emit('previous')"
+      @previous="$store.dispatch('previousQuestion')"
       @next="next"
     />
   </div>
 </template>
 
 <script>
-import { sections } from '../data/questionnaire.json';
 import ContentContainer from './ContentContainer';
 import OptionsView from './OptionsView';
 import MessageNavigation from './MessageNavigation';
 
 export default {
-  props: [
-    'id',
-    'title',
-    'body',
-    'options',
-    'isSection',
-    'first',
-    'sectionError'
-  ],
+  props: ['id', 'title', 'body', 'options', 'isSection', 'sectionError'],
   components: { ContentContainer, OptionsView, MessageNavigation },
   data() {
     return { choice: undefined, error: false };
   },
-  computed: {
-    sectionTitle() {
-      return this.section && sections[this.section];
-    }
-  },
   methods: {
     next() {
-      if (!this.options || this.choice) {
-        this.$emit('next', this.choice);
+      this.$store.dispatch('nextQuestion', this.choice);
+      /* if (!this.options || this.choice) {
       } else {
         this.error = true;
-      }
+      } */
     }
   },
   watch: {

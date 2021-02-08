@@ -5,7 +5,8 @@
     </button>
 
     <button
-      @click="$emit('next')" class="btn btn-primary ml-auto"
+      @click="$emit('next')"
+      class="btn btn-primary ml-auto"
       :class="{ 'btn-error': error }"
     >
       Weiter
@@ -15,6 +16,11 @@
 
 <script>
 export default {
-  props: ['first', 'isSection', 'error']
+  props: ['isSection', 'error'],
+  computed: {
+    first() {
+      return this.$store.state.currentQuestion === 0;
+    }
+  }
 };
 </script>

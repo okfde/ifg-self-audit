@@ -5,7 +5,12 @@
     </div>
 
     <div v-for="option in radios" :key="option.id" class="flex mb-1">
-      <input type="radio" :value="option.id" v-model="choice" :id="option.id" />
+      <input
+        type="radio"
+        :value="option.id"
+        :id="option.id"
+        v-model.lazy="choice"
+      />
       <label :for="option.id" class="ml-2 flex-1">{{ option.text }}</label>
     </div>
   </div>
@@ -13,7 +18,7 @@
 
 <script>
 export default {
-  props: ['options', 'error'],
+  props: ['options', 'error', 'questionId'],
   data() {
     return { choice: '' };
   },
@@ -39,7 +44,7 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-input:checked + label {
+/* input:checked + label {
   @apply font-semibold;
-}
+} */
 </style>

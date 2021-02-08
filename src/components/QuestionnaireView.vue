@@ -45,17 +45,13 @@ import MessageView from './MessageView';
 import SectionView from './SectionView';
 import ResultsView from './ResultsView';
 
+import { mapGetters, mapState } from 'vuex';
+
 export default {
-  props: [
-    'question',
-    'currentQuestion',
-    'section',
-    'answers',
-    'totalPoints',
-    'progress',
-    'done',
-    'transition'
-  ],
-  components: { MessageView, SectionView, ResultsView }
+  components: { MessageView, SectionView, ResultsView },
+  computed: {
+    ...mapState(['currentQuestion', 'answers', 'transition', 'totalPoints']),
+    ...mapGetters(['question', 'done', 'progress', 'section'])
+  }
 };
 </script>

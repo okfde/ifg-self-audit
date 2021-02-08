@@ -3,17 +3,18 @@
   "version": "0.2.0",
   "private": true,
   "scripts": {
-    "build:app": "vue-cli-service build --modern",
-    "build:questionnaire": "node src/buildQuestionnaire.js",
-    "build:excel": "node src/buildExcel.js",
     "build": "yarn build:questionnaire && yarn build:app && yarn build:excel",
+    "lint": "vue-cli-service lint",
+    "build:app": "vue-cli-service build --modern",
+    "build:excel": "node src/buildExcel.js",
+    "build:questionnaire": "node src/buildQuestionnaire.js",
     "dev": "yarn dev:app & yarn dev:questionnaire",
     "dev:app": "vue-cli-service serve",
-    "dev:questionnaire": "onchange 'src/data/**/*.md' 'src/data/**/*.yml' -- yarn build:questionnaire",
-    "lint": "vue-cli-service lint"
+    "dev:questionnaire": "onchange 'src/data/**/*.md' 'src/data/**/*.yml' -- yarn build:questionnaire"
   },
   "dependencies": {
     "@juggle/resize-observer": "^3.2.0",
+    "always-array": "^1.1.0",
     "core-js": "^3.6.5",
     "excel4node": "^1.7.2",
     "fontsource-inter": "^3.0.5",
@@ -23,12 +24,14 @@
     "marked": "^1.2.2",
     "tailwindcss": "^1.9.5",
     "vue": "^2.6.11",
+    "vuex": "^3.4.0",
     "yaml-front-matter": "^4.1.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-optional-chaining": "^7.12.1",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.1.0",
