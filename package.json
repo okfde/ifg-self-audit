@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "@juggle/resize-observer": "^3.2.0",
-    "always-array": "^1.1.0",
     "core-js": "^3.6.5",
     "excel4node": "^1.7.2",
     "fontsource-inter": "^3.0.5",
