@@ -9,7 +9,7 @@
 
     <ContentContainer :body="body" class="mb-2" />
 
-    <div class="barometer">
+    <div class="barometer flex">
       <img
         src="../assets/circle.svg"
         class="needle"

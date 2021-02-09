@@ -39,37 +39,19 @@ export default {
 };
 </script>
 
-<style lang="postcss" scoped>
-.slide-enter-active,
-.slide-back-enter-active {
-  transition: opacity 0.2s, transform 0.2s cubic-bezier(0, 0, 0.2, 1);
+<style lang="postcss">
+@tailwind base;
+@tailwind components;
+
+.self-audit {
+  h2 {
+    font-size: 1.75rem !important;
+  }
+
+  h3 {
+    font-size: 1.25rem !important;
+  }
 }
 
-.slide-leave-active,
-.slide-back-leave-active {
-  transition: opacity 0.2s, transform 0.2s cubic-bezier(0.4, 0, 1, 1);
-}
-
-.slide-leave-to,
-.slide-enter,
-.slide-back-leave-to,
-.slide-back-enter {
-  opacity: 0;
-}
-
-.slide-leave-to {
-  transform: translateX(-10%);
-}
-
-.slide-enter {
-  transform: translateX(10%);
-}
-
-.slide-back-leave-to {
-  transform: translateX(10%);
-}
-
-.slide-back-enter {
-  transform: translateX(-10%);
-}
+@tailwind utilities;
 </style>

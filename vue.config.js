@@ -6,7 +6,7 @@ module.exports = {
     loaderOptions: {
       css: {
         modules: {
-          localIdentName: '[hash:6]'
+          localIdentName: '[hash:base64]'
         }
       }
     }

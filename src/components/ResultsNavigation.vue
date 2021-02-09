@@ -1,12 +1,18 @@
 <template>
-  <div class="flex">
-    <button @click="restart" class="btn btn-secondary print:hidden mt-4 ml-2">
-      Neu beginnen
+  <div class="flex mt-8 print:hidden">
+    <button
+      @click="$store.dispatch('previousQuestion')"
+      class="btn btn-secondary"
+    >
+      Zurück
     </button>
 
+    <button @click="restart" class="btn btn-secondary ml-2">
+      Neu beginnen
+    </button>
     <div class="ml-auto">
-      <button @click="print" class="btn btn-primary print:hidden mt-4">
-        Ergebnis drucken
+      <button @click="print" class="btn btn-primary">
+        <i class="fa fa-print mr-1" /> Ergebnis drucken
       </button>
     </div>
   </div>

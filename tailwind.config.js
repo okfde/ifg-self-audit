@@ -1,4 +1,5 @@
 module.exports = {
+  important: true,
   purge: ['./src/**/*.vue'],
   theme: {
     extend: {
@@ -38,14 +39,8 @@ module.exports = {
       screens: {
         print: { raw: 'print' }
       }
-    },
-    fontFamily: {
-      display: ['Inter', 'sans-serif'],
-      body: ['Inter', 'sans-serif']
     }
   },
-  variants: {},
-  plugins: [],
   corePlugins: {
     preflight: false
   }
