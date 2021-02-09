@@ -133,10 +133,13 @@ const store = new Vuex.Store({
         version
       };
     },
-    permalink(_, getters) {
+    persistantUrlData(_, getters) {
       const data = getters.persistantData;
+      return JSONCrush(JSON.stringify(data));
+    },
+    permalink(_, getters) {
       const url = new URL(window.location.href);
-      url.hash = JSONCrush(JSON.stringify(data));
+      url.hash = getters.persistantUrlData;
       return url.href;
     }
   }

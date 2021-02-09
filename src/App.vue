@@ -45,6 +45,10 @@ export default {
   h3 {
     font-size: 1.25rem !important;
   }
+
+  .btn .fa {
+    @apply mr-1;
+  }
 }
 
 @tailwind utilities;
