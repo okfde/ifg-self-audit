@@ -1,5 +1,5 @@
 <template>
-  <header class="mb-12 print:mb-4">
+  <header class="my-6 print:mb-4">
     <h1 class="print:mt-0">IFG Self-Audit</h1>
 
     <span v-if="!$store.getters.done">
