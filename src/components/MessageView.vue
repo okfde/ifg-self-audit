@@ -5,19 +5,16 @@
     <ContentContainer :body="body" class="mb-4" />
 
     <OptionsView :options="options" v-model="choice" />
-
-    <MessageNavigation v-if="!isSection" />
   </div>
 </template>
 
 <script>
 import ContentContainer from './ContentContainer';
 import OptionsView from './OptionsView';
-import MessageNavigation from './MessageNavigation';
 
 export default {
   props: ['id', 'title', 'body', 'options', 'isSection'],
-  components: { ContentContainer, OptionsView, MessageNavigation },
+  components: { ContentContainer, OptionsView },
   data() {
     return { choice: undefined };
   },

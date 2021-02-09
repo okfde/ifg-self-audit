@@ -32,6 +32,8 @@
           :key="question.id"
         />
       </transition>
+
+      <QuestionnaireNavigation />
     </div>
   </div>
 </template>
@@ -40,11 +42,17 @@
 import MessageView from './MessageView';
 import SectionView from './SectionView';
 import ResultsView from './ResultsView';
+import QuestionnaireNavigation from './QuestionnaireNavigation';
 
 import { mapGetters, mapState } from 'vuex';
 
 export default {
-  components: { MessageView, SectionView, ResultsView },
+  components: {
+    MessageView,
+    SectionView,
+    ResultsView,
+    QuestionnaireNavigation
+  },
   computed: {
     ...mapState(['currentQuestion', 'answers', 'transition', 'totalPoints']),
     ...mapGetters(['question', 'done', 'progress', 'section'])

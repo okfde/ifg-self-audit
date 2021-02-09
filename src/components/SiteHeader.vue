@@ -1,32 +1,18 @@
 <template>
-  <header class="my-6 print:mb-4">
-    <h1 class="print:mt-0">IFG Self-Audit</h1>
-
-    <span v-if="!$store.getters.done">
-      Teil {{ answeredQuestions + 1 }} von {{ totalQuestions }}
-    </span>
+  <header class="my-6 print:mb-4 text-center">
+    <h1 class="flex items-center print:mt-0">
+      <svg
+        viewBox="0 0 34 34"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        class="mr-4 w-12"
+      >
+        <path
+          d="M30.3333 17C30.3333 20.5362 28.9286 23.9276 26.4281 26.4281C23.9276 28.9286 20.5362 30.3333 17 30.3333C13.4638 30.3333 10.0724 28.9286 7.57192 26.4281C5.07143 23.9276 3.66668 20.5362 3.66668 17C3.66668 13.4638 5.07143 10.0724 7.57192 7.57192C10.0724 5.07143 13.4638 3.66668 17 3.66668C18.2667 3.66668 19.5 3.85001 20.6667 4.18334L23.2833 1.56668C21.35 0.766677 19.2333 0.333344 17 0.333344C14.8113 0.333344 12.644 0.76444 10.622 1.60202C8.59986 2.4396 6.76254 3.66725 5.2149 5.2149C2.08929 8.3405 0.333344 12.5797 0.333344 17C0.333344 21.4203 2.08929 25.6595 5.2149 28.7851C6.76254 30.3328 8.59986 31.5604 10.622 32.398C12.644 33.2356 14.8113 33.6667 17 33.6667C21.4203 33.6667 25.6595 31.9107 28.7851 28.7851C31.9107 25.6595 33.6667 21.4203 33.6667 17H30.3333ZM10.1833 13.8L7.83334 16.1667L15.3333 23.6667L32 7.00001L29.65 4.63334L15.3333 18.95L10.1833 13.8Z"
+          fill="#296DFF"
+        />
+      </svg>
+      Self Audit
+    </h1>
   </header>
 </template>
-
-<script>
-import { questionnaire } from '../data/questionnaire.json';
-import uniq from 'lodash/uniq';
-
-export default {
-  computed: {
-    totalQuestions() {
-      const sections = questionnaire.map(q => q.section).filter(Boolean);
-      const uniqSections = uniq(sections);
-      return questionnaire.length - sections.length + uniqSections.length;
-    },
-    answeredQuestions() {
-      const { currentQuestion } = this.$store.state;
-      const answered = questionnaire.slice(0, currentQuestion);
-      const sections = answered.map(q => q.section).filter(Boolean);
-      const uniqSections = uniq(sections);
-
-      return currentQuestion - sections.length + uniqSections.length;
-    }
-  }
-};
-</script>

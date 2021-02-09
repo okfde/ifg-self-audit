@@ -11,19 +11,16 @@
       :options="question.options"
       :isSection="true"
     />
-
-    <MessageNavigation />
   </div>
 </template>
 
 <script>
 import MessageView from './MessageView';
-import MessageNavigation from './MessageNavigation';
 import { sections } from '../data/questionnaire.json';
 import { mapGetters } from 'vuex';
 
 export default {
-  components: { MessageView, MessageNavigation },
+  components: { MessageView },
   computed: {
     ...mapGetters(['section']),
     sectionTitle() {
