@@ -45,5 +45,8 @@ module.exports = {
     }
   },
   variants: {},
-  plugins: []
+  plugins: [],
+  corePlugins: {
+    preflight: false
+  }
 };
