@@ -16,7 +16,6 @@
     "@juggle/resize-observer": "^3.2.0",
     "core-js": "^3.6.5",
     "excel4node": "^1.7.2",
-    "fontsource-inter": "^3.0.5",
     "fs-extra": "^9.0.1",
     "js-yaml": "^3.14.0",
     "lodash": "^4.17.20",
