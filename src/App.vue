@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <SiteHeader />
+    <SiteHeader ref="header" />
     <QuestionnaireView />
   </div>
 </template>
@@ -20,6 +20,12 @@ export default {
     const ro = new ResizeObserver(this.resize);
     ro.observe(document.body);
     document.addEventListener('resize', this.resize);
+
+    this.$store.subscribe(({ type }) => {
+      if (type.includes('currentQuestion')) {
+        this.$refs.header.scrollIntoView();
+      }
+    });
   },
   methods: {
     resize() {
