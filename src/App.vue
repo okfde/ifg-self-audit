@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div class="self-audit">
     <SiteHeader ref="header" />
     <QuestionnaireView />
   </div>
