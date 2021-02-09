@@ -1,6 +1,6 @@
 {
   "name": "fds-self-audit",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "scripts": {
     "build": "yarn build:questionnaire && yarn build:app && yarn build:excel",
