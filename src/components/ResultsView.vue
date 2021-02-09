@@ -10,13 +10,17 @@
     <ContentContainer :body="body" class="mb-2" />
 
     <div class="barometer flex">
-      <img
-        src="../assets/circle.svg"
+      <svg
         class="needle"
         :style="{
           marginLeft: barometerPosition
         }"
-      />
+        width="24"
+        height="24"
+        viewBox="0 0 6.35 6.35"
+      >
+        <circle cx="3.175" cy="3.175" r="3.175" fill="#fff" />
+      </svg>
     </div>
 
     <p>
