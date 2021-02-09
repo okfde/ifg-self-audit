@@ -4,13 +4,12 @@
       <p><strong>Fehler:</strong> Bitte wählen Sie eine der Optionen.</p>
     </div>
 
-    <div v-for="option in radios" :key="option.id" class="flex mb-1">
-      <input
-        type="radio"
-        :value="option.id"
-        :id="option.id"
-        v-model.lazy="choice"
-      />
+    <div
+      v-for="option in options"
+      :key="option.id"
+      class="flex mb-1 items-center"
+    >
+      <input type="radio" :value="option.id" :id="option.id" v-model="choice" />
       <label :for="option.id" class="ml-2 flex-1">{{ option.text }}</label>
     </div>
   </div>
@@ -18,26 +17,22 @@
 
 <script>
 export default {
-  props: ['options', 'error', 'questionId'],
+  props: ['options', 'value'],
   data() {
     return { choice: '' };
   },
+  created() {
+    this.choice = this.value ?? '';
+  },
   computed: {
-    radios() {
-      return this.options?.map(o => ({
-        ...o,
-        id: Math.random()
-          .toString(36)
-          .substring(7)
-      }));
+    error() {
+      return this.$store.state.error && !this.choice;
     }
   },
   watch: {
     choice() {
-      this.$emit(
-        'input',
-        this.radios.find(o => o.id === this.choice)
-      );
+      const choice = this.options.find(o => o.id === this.choice);
+      this.$emit('input', choice);
     }
   }
 };

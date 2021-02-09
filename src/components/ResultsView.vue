@@ -44,19 +44,13 @@
       />
     </ul>
 
-    <button @click="print" class="btn btn-primary print:hidden mt-4">
-      Ergebnis drucken
-    </button>
-
-    <button @click="restart" class="btn btn-secondary print:hidden mt-4 ml-2">
-      Neu beginnen
-    </button>
+    <ResultsNavigation />
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
 import { questionnaire, totalPoints } from '../data/questionnaire.json';
+import ResultsNavigation from './ResultsNavigation';
 import ContentContainer from './ContentContainer';
 
 const { title, body } = questionnaire.pop();
@@ -65,9 +59,14 @@ export default {
   data() {
     return { title, body, totalPoints };
   },
-  components: { ContentContainer },
+  components: { ContentContainer, ResultsNavigation },
   computed: {
-    ...mapState(['answers']),
+    answers() {
+      ResultsNavigation;
+      const { answers } = this.$store.state;
+      console.log('answers', { ...answers });
+      return Object.keys(answers).map(id => ({ id, choice: answers[id] }));
+    },
     improvements() {
       return this.answers
         .map(answer => ({
@@ -83,9 +82,10 @@ export default {
         .sort((a, b) => b.question.priority - a.question.priority);
     },
     allQuestionsAnswered() {
+      console.log('answers is', [...this.answers], this.answers.find);
       return questionnaire
         .filter(q => q.options)
-        .every(q => this.answers.find(a => a.id === q.id).choice);
+        .every(q => this.answers.find(a => a.id === q.id)?.choice);
     },
     collectedPoints() {
       const p = this.answers.reduce((c, a) => (c += a.choice?.points || 0), 0);
@@ -94,20 +94,6 @@ export default {
     barometerPosition() {
       const percentage = this.collectedPoints / this.totalPoints;
       return `calc(${percentage * 100}% - ${percentage}rem)`;
-    }
-  },
-  methods: {
-    print() {
-      window.print();
-    },
-    restart() {
-      if (
-        window.confirm(
-          'Möchten Sie wirklich neu starten? Sie verlieren die eingegebenen Daten.'
-        )
-      ) {
-        this.$store.commit('restart');
-      }
     }
   }
 };

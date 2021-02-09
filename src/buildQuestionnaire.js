@@ -26,7 +26,16 @@ async function main() {
     const [body, guidance] = marked(__content.trim()).split('<hr>');
     const id = meta.id || path.basename(file, '.md');
 
-    return { ...defaults, ...meta, id, body, guidance };
+    const options =
+      meta.options &&
+      meta.options.map(o => ({
+        ...o,
+        id: Math.random()
+          .toString(36)
+          .substring(7)
+      }));
+
+    return { ...defaults, ...meta, options, id, body, guidance };
   });
 
   const questionnaire = await Promise.all(queue);

@@ -1,13 +1,17 @@
 <template>
-  <div class="flex mt-8" v-if="!isSection">
-    <button @click="$emit('previous')" class="btn btn-secondary" v-if="!first">
+  <div class="flex mt-8">
+    <button
+      @click="$store.dispatch('previousQuestion')"
+      class="btn btn-secondary"
+      v-if="!first"
+    >
       Zurück
     </button>
 
     <button
-      @click="$emit('next')"
+      @click="$store.dispatch('nextQuestion')"
       class="btn btn-primary ml-auto"
-      :class="{ 'btn-error': error }"
+      :class="{ 'btn-error': $store.state.error }"
     >
       Weiter
     </button>
@@ -16,7 +20,6 @@
 
 <script>
 export default {
-  props: ['isSection', 'error'],
   computed: {
     first() {
       return this.$store.state.currentQuestion === 0;

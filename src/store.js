@@ -1,38 +1,46 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import evaluateCondition from '../evaluateCondition';
-import { questionnaire, totalPoints } from '../data/questionnaire.json';
-import { version } from '../../package.json';
-import alwaysArray from 'always-array';
+import evaluateCondition from './evaluateCondition';
+import { questionnaire, totalPoints } from './data/questionnaire.json';
+import { version } from '../package.json';
 
 Vue.use(Vuex);
+
+const uppercase = s => s.charAt(0).toUpperCase() + s.slice(1);
+const setter = key => (state, to) => (state[key] = to);
+const setters = (...keys) =>
+  keys.reduce((obj, key) => {
+    const method = `set${uppercase(key)}`;
+    obj[method] = setter(key);
+    return obj;
+  }, {});
 
 const store = new Vuex.Store({
   state: {
     currentQuestion: 0,
-    answers: [],
+    answers: {},
     transition: 'next',
-    totalPoints
+    totalPoints,
+    error: false,
+    errorsOkay: false
   },
   mutations: {
-    setTransition(state, transition) {
-      state.transition = transition;
-    },
-    setCurrentQuestion(state, i) {
-      state.currentQuestion = i;
-    },
+    ...setters(
+      'currentQuestion',
+      'answers',
+      'transition',
+      'error',
+      'errorsOkay'
+    ),
     incrementCurrentQuestion(state, by = 1) {
       state.currentQuestion += by;
     },
     decrementCurrentQuestion(state, by = 1) {
       state.currentQuestion -= by;
     },
-    addAnswer(state, answers) {
-      state.answers.push(...alwaysArray(answers));
-    },
-    spliceAnswers(state, i) {
-      state.answers.splice(i, 1);
+    addAnswer(state, answer) {
+      state.answers[answer.id] = answer.choice;
     },
     restart(state) {
       state.transition = 'previous';
@@ -41,21 +49,36 @@ const store = new Vuex.Store({
     }
   },
   actions: {
-    nextQuestion({ commit, getters, state, dispatch }, choice) {
-      commit('setTransition', 'next');
+    nextQuestion({ commit, state, getters, dispatch }) {
+      // check for errors, if the user isn't okay with them
+      if (!state.errorsOkay) {
+        let error = false;
+        if (getters.section) {
+          error = !getters.section.every(q => state.answers[q.id]?.choice);
+        } else {
+          error = state.answers[getters.question.id]?.choice;
+        }
 
-      if (!getters.section) {
-        commit('addAnswer', { id: getters.question.id, choice });
-        commit('incrementCurrentQuestion');
-      } else {
-        const answers = getters.section.map((q, i) => ({
-          id: q.id,
-          choice: choice[i]
-        }));
+        commit('setError', error);
 
-        commit('addAnswer', answers);
-        commit('incrementCurrentQuestion', getters.section.length);
+        if (error) {
+          const p = window.confirm(
+            'Sie haben nicht alle Fragen beantwortet. Möchten Sie trotzdem fortfahren?'
+          );
+          if (p) {
+            commit('setError', false);
+            commit('setErrorsOkay', true);
+          } else {
+            return;
+          }
+        }
       }
+
+      commit('setTransition', 'next');
+      commit(
+        'incrementCurrentQuestion',
+        getters.section ? getters.section.length : 1
+      );
 
       // check if the next question doesn't apply
       const next = questionnaire[state.currentQuestion];
@@ -63,29 +86,17 @@ const store = new Vuex.Store({
         dispatch('nextQuestion');
     },
     previousQuestion({ state, commit, dispatch }) {
+      commit('setError', false);
       commit('setTransition', 'previous');
 
       if (state.currentQuestion > 0) {
         commit('decrementCurrentQuestion');
-        const previous = questionnaire[this.currentQuestion];
-        const id = state.answers.findIndex(a => a.id === previous.id);
-        if (id) {
-          commit('spliceAnswers', id);
-        }
+        const previous = questionnaire[state.currentQuestion];
 
         const { section } = previous;
         if (section) {
           const first = questionnaire.findIndex(q => q.section === section);
-          const members = questionnaire.filter(q => q.section === section);
           commit('setCurrentQuestion', first);
-
-          // delete answers
-          for (const member of members) {
-            const id = state.answers.findIndex(a => a.id === member.id);
-            if (id) {
-              commit('spliceAnswers', id);
-            }
-          }
         }
 
         if (!evaluateCondition(previous, state.answers))
@@ -103,7 +114,7 @@ const store = new Vuex.Store({
     progress(state) {
       return (state.currentQuestion / questionnaire.length) * 100;
     },
-    section(state, getters) {
+    section(_, getters) {
       if (!getters.question) return false;
 
       const { section } = getters.question;
@@ -112,33 +123,31 @@ const store = new Vuex.Store({
       }
 
       return false;
-    },
-    all(state, getters) {
-      const { question, done, progress, section } = getters;
-      return { ...state, question, done, progress, section };
     }
   }
 });
-
-export default store;
 
 try {
   const raw = localStorage.getItem('store');
   const data = JSON.parse(raw);
   if (data.version === version) {
     store.commit('setCurrentQuestion', data.currentQuestion);
-    store.commit('addAnswer', data.answers);
+    store.commit('setAnswers', data.answers);
+    store.commit('setErrorsOkay', data.errorsOkay);
   }
 } catch {} // eslint-disable-line no-empty
 
 store.subscribe(({ type }, state) => {
-  if (type.includes('currentQuestion') || type.includes('Answer')) {
+  if (type.includes('CurrentQuestion') || type.includes('Answer')) {
     const data = {
       currentQuestion: state.currentQuestion,
       answers: state.answers,
+      errorsOkay: state.errorsOkay,
       version
     };
 
     localStorage.setItem('store', JSON.stringify(data));
   }
 });
+
+export default store;

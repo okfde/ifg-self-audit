@@ -1,21 +1,12 @@
 <template>
   <div>
-    <h2 v-if="!isSection" v-text="title" />
-    <h3 v-else v-text="title" />
+    <component :is="isSection ? 'h3' : 'h2'" v-text="title" />
 
     <ContentContainer :body="body" class="mb-4" />
 
-    <OptionsView
-      :options="options"
-      :error="error || sectionError"
-      v-model="choice"
-    />
+    <OptionsView :options="options" v-model="choice" />
 
-    <MessageNavigation
-      v-if="!isSection"
-      @previous="$store.dispatch('previousQuestion')"
-      @next="next"
-    />
+    <MessageNavigation v-if="!isSection" />
   </div>
 </template>
 
@@ -25,26 +16,25 @@ import OptionsView from './OptionsView';
 import MessageNavigation from './MessageNavigation';
 
 export default {
-  props: ['id', 'title', 'body', 'options', 'isSection', 'sectionError'],
+  props: ['id', 'title', 'body', 'options', 'isSection'],
   components: { ContentContainer, OptionsView, MessageNavigation },
   data() {
-    return { choice: undefined, error: false };
+    return { choice: undefined };
   },
-  methods: {
-    next() {
-      this.$store.dispatch('nextQuestion', this.choice);
-      /* if (!this.options || this.choice) {
-      } else {
-        this.error = true;
-      } */
+  created() {
+    const choice = this.$store.state.answers[this.id];
+    if (choice) {
+      this.choice = choice.id;
     }
   },
   watch: {
     choice() {
-      this.$emit('input', this.choice);
+      this.$store.commit('addAnswer', {
+        id: this.id,
+        choice: this.choice
+      });
     },
     id() {
-      this.error = false;
       this.choice = undefined;
     }
   }
