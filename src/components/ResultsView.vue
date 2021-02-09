@@ -118,8 +118,12 @@ export default {
   }
 }
 
+ul {
+  @apply list-none pl-0;
+}
+
 li.improvement {
-  @apply mb-4 border-l-4 pl-4 border-solid;
+  @apply mb-4 border-0 border-gray-300 border-l-4 pl-4 border-solid;
 
   >>> h3 {
     @apply text-base font-bold;

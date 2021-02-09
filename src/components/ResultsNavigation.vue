@@ -6,12 +6,15 @@
     >
       Zurück
     </button>
-
     <button @click="restart" class="btn btn-secondary ml-2">
       Neu beginnen
     </button>
+
     <div class="ml-auto">
-      <button @click="print" class="btn btn-primary">
+      <button @click="copyLink" class="btn btn-primary">
+        <i class="fa fa-link" /> Ergebnis kopieren
+      </button>
+      <button @click="print" class="btn btn-primary ml-2">
         <i class="fa fa-print mr-1" /> Ergebnis drucken
       </button>
     </div>
@@ -19,6 +22,8 @@
 </template>
 
 <script>
+import copy from 'copy-text-to-clipboard';
+
 export default {
   methods: {
     print() {
@@ -32,6 +37,9 @@ export default {
       ) {
         this.$store.commit('restart');
       }
+    },
+    copyLink() {
+      copy(this.$store.getters.permalink);
     }
   }
 };

@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import { JSONCrush, JSONUncrush } from 'jsoncrush';
 
 import evaluateCondition from './evaluateCondition';
 import { questionnaire, totalPoints } from './data/questionnaire.json';
@@ -123,13 +124,45 @@ const store = new Vuex.Store({
       }
 
       return false;
+    },
+    persistantData(state) {
+      return {
+        currentQuestion: state.currentQuestion,
+        answers: state.answers,
+        errorsOkay: state.errorsOkay,
+        version
+      };
+    },
+    permalink(_, getters) {
+      const data = getters.persistantData;
+      const url = new URL(window.location.href);
+      url.hash = JSONCrush(JSON.stringify(data));
+      return url.href;
     }
   }
 });
 
-try {
+function dataFromLocalStorage() {
   const raw = localStorage.getItem('store');
-  const data = JSON.parse(raw);
+  return JSON.parse(raw);
+}
+
+function dataFromUrl() {
+  const raw = decodeURIComponent(window.location.hash.slice(1));
+  return JSONUncrush(raw);
+}
+
+try {
+  let data;
+
+  if (window.location.hash) {
+    data = dataFromLocalStorage();
+  }
+
+  if (!data) {
+    data = dataFromUrl();
+  }
+
   if (data.version === version) {
     store.commit('setCurrentQuestion', data.currentQuestion);
     store.commit('setAnswers', data.answers);
@@ -137,15 +170,9 @@ try {
   }
 } catch {} // eslint-disable-line no-empty
 
-store.subscribe(({ type }, state) => {
+store.subscribe(({ type }) => {
   if (type.includes('CurrentQuestion') || type.includes('Answer')) {
-    const data = {
-      currentQuestion: state.currentQuestion,
-      answers: state.answers,
-      errorsOkay: state.errorsOkay,
-      version
-    };
-
+    const data = store.getters.persistantData;
     localStorage.setItem('store', JSON.stringify(data));
   }
 });
