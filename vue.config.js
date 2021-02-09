@@ -1,4 +1,4 @@
 module.exports = {
-  publicPath: '/ifg-self-audit/',
+  publicPath: '/self-audit/',
   filenameHashing: false
 };
