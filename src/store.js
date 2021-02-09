@@ -44,7 +44,7 @@ const store = new Vuex.Store({
     },
     restart(state) {
       state.transition = 'previous';
-      state.answers = [];
+      state.answers = {};
       state.currentQuestion = 0;
     }
   },
