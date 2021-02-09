@@ -20,12 +20,7 @@
           :key="question.id"
         />
 
-        <SectionView
-          v-else-if="section"
-          v-on="$listeners"
-          :section="section"
-          :key="question.id"
-        />
+        <SectionView v-else-if="section" v-on="$listeners" :key="question.id" />
 
         <MessageView
           v-else
