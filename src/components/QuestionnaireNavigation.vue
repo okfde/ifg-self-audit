@@ -1,14 +1,16 @@
 <template>
-  <div class="flex mt-8">
-    <button
-      @click="$store.dispatch('previousQuestion')"
-      class="btn btn-secondary"
-      v-if="!first"
-    >
-      Zurück
-    </button>
+  <div class="flex mt-8" v-if="!$store.getters.done">
+    <transition name="fade">
+      <button
+        @click="$store.dispatch('previousQuestion')"
+        class="btn btn-secondary"
+        v-if="!first"
+      >
+        Zurück
+      </button>
+    </transition>
 
-    <span v-if="!$store.getters.done" class="block text-center flex-1">
+    <span class="block text-center flex-1">
       Teil {{ answeredQuestions + 1 }} von {{ totalQuestions }}
     </span>
 
@@ -47,3 +49,14 @@ export default {
   }
 };
 </script>
+
+<style lang="postcss" scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>
