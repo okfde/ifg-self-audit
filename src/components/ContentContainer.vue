@@ -18,7 +18,7 @@ export default {
   }
 
   ul {
-    @apply list-disc ml-8;
+    @apply list-disc ml-8 pl-0;
 
     li {
       @apply mb-1;
