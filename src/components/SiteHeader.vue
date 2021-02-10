@@ -12,7 +12,7 @@
           fill="#296DFF"
         />
       </svg>
-      Self Audit
+      Self-Audit für Informationsfreiheit
     </h1>
   </header>
 </template>
