@@ -143,7 +143,7 @@ export default {
 
 <style lang="postcss" scoped>
 .barometer {
-  @apply flex w-full h-4 rounded;
+  @apply flex w-4 h-4 rounded;
   background: linear-gradient(
     to right,
     theme('colors.red'),
