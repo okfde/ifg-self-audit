@@ -156,14 +156,14 @@ function dataFromUrl() {
 }
 
 try {
-  let data;
+  let data = {};
 
   if (window.location.hash) {
-    data = dataFromLocalStorage();
+    data = dataFromUrl();
   }
 
-  if (!data) {
-    data = dataFromUrl();
+  if (!data.version) {
+    data = dataFromLocalStorage();
   }
 
   if (data.version === version) {
