@@ -110,7 +110,7 @@ const store = new Vuex.Store({
       return questionnaire[state.currentQuestion] || {};
     },
     done(state) {
-      return state.currentQuestion === questionnaire.length - 1;
+      return state.currentQuestion >= questionnaire.length - 1;
     },
     progress(state) {
       return (state.currentQuestion / questionnaire.length) * 100;
@@ -177,6 +177,18 @@ store.subscribe(({ type }) => {
   if (type.includes('CurrentQuestion') || type.includes('Answer')) {
     const data = store.getters.persistantData;
     localStorage.setItem('store', JSON.stringify(data));
+  }
+
+  if (type.includes('CurrentQuestion')) {
+    // if we somehow screw up, kindly fix it and tell Sentry
+    const max = questionnaire.length - 1;
+    if (store.state.currentQuestion < 0) {
+      store.commit('setCurrentQuestion', 0);
+      throw new Error('currentQuestion was below 0');
+    } else if (store.state.currentQuestion > max) {
+      store.commit('setCurrentQuestion', max);
+      throw new Error('currentQuestion was above questionnaire length');
+    }
   }
 });
 
