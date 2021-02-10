@@ -106,9 +106,14 @@ export default {
       return this.answers
         .map(answer => {
           const index = questionnaire.findIndex(q => q.id === answer.id);
+          const question = questionnaire[index];
+          const best = Math.max(...question.options.map(o => o.points));
+          const difference = best - answer.choice.points;
           return {
             answer,
-            question: { ...questionnaire[index], index }
+            best,
+            difference,
+            question: { ...question, index }
           };
         })
         .sort((a, b) => a.question.index - b.question.index);
@@ -116,12 +121,10 @@ export default {
     improvements() {
       return this.answersWithQuestions
         .filter(({ question }) => question.options && question.guidance)
-        .filter(({ answer, question }) => {
-          const best = Math.max(...question.options.map(o => o.points));
-
-          return answer.choice && best !== answer.choice.points;
-        })
-        .sort((a, b) => b.question.priority - a.question.priority);
+        .filter(
+          ({ answer, best }) => answer.choice && best !== answer.choice.points
+        )
+        .sort((a, b) => b.difference - a.difference);
     },
     allQuestionsAnswered() {
       console.log('answers is', [...this.answers], this.answers.find);
