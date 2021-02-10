@@ -28,11 +28,9 @@ async function main() {
 
     const options =
       meta.options &&
-      meta.options.map(o => ({
+      meta.options.map((o, i) => ({
         ...o,
-        id: Math.random()
-          .toString(36)
-          .substring(7)
+        id: `${id}-${i}`
       }));
 
     return { ...defaults, ...meta, options, id, body, guidance };
