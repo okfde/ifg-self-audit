@@ -152,7 +152,7 @@ function dataFromLocalStorage() {
 
 function dataFromUrl() {
   const raw = decodeURIComponent(window.location.hash.slice(1));
-  return JSONUncrush(raw);
+  return JSON.parse(JSONUncrush(raw));
 }
 
 try {
