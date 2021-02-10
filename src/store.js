@@ -110,7 +110,7 @@ const store = new Vuex.Store({
       return questionnaire[state.currentQuestion] || {};
     },
     done(state) {
-      return state.currentQuestion === questionnaire.length;
+      return state.currentQuestion === questionnaire.length - 1;
     },
     progress(state) {
       return (state.currentQuestion / questionnaire.length) * 100;

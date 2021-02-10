@@ -37,6 +37,14 @@ export default {
 @tailwind base;
 @tailwind components;
 
+@screen print {
+  .container,
+  .row,
+  .col-md-8 {
+    @apply w-full max-w-none flex-1;
+  }
+}
+
 .self-audit {
   h2 {
     font-size: 1.75rem !important;
