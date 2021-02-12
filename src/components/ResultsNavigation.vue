@@ -61,7 +61,7 @@ export default {
           'Möchten Sie wirklich neu starten? Sie verlieren die eingegebenen Daten.'
         )
       ) {
-        this.$store.commit('restart');
+        this.$store.dispatch('restart');
       }
     }
   }

@@ -42,11 +42,6 @@ const store = new Vuex.Store({
     },
     addAnswer(state, answer) {
       state.answers[answer.id] = answer.choice;
-    },
-    restart(state) {
-      state.transition = 'previous';
-      state.answers = {};
-      state.currentQuestion = 0;
     }
   },
   actions: {
@@ -103,6 +98,11 @@ const store = new Vuex.Store({
         if (!evaluateCondition(previous, state.answers))
           dispatch('previousQuestion');
       }
+    },
+    restart({ commit }) {
+      commit('setTransition', 'previous');
+      commit('setAnswers', {});
+      commit('setCurrentQuestion', 0);
     }
   },
   getters: {
