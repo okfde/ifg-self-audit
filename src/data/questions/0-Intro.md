@@ -22,6 +22,6 @@ Das Self-Audit basiert auf dem [“Self Assessment Toolkit”](https://ico.org.u
 - Sie können die Ergebnisse nach Abschluss des Fragebogens ausdrucken.
 - Antworten werden nicht an uns oder Dritte weitergegeben, sondern ausschließlich an Sie selbst.
 
-Sie können die Bearbeitung des Self Audits jederzeit pausieren, die Daten werden auf Ihrem Rechner lokal gesichert. Alternativ können Sie auch eine reduzierte Version des Self-Audits [als Excel-Formular herunterladen](https://github.com/okfde/ifg-self-audit/raw/gh-pages/questionnaire.xlsx). Bitte beantworten Sie möglichst alle Fragen, um ein möglichst aussagekräftiges Ergebnis zu erhalten.
+Bitte beantworten Sie möglichst alle Fragen, um ein möglichst aussagekräftiges Ergebnis zu erhalten. Sie können die Bearbeitung des Self Audits jederzeit pausieren, die Daten werden auf Ihrem Rechner lokal gesichert. Alternativ können Sie auch eine reduzierte Version des Self-Audits [als Excel-Formular herunterladen](https://github.com/okfde/ifg-self-audit/raw/gh-pages/questionnaire.xlsx). Der Quellcode ist [auf Github](https://github.com/okfde/ifg-self-audit/) öffentlich einsehbar.
 
 Wir freuen uns über Ihr Feedback zum Self-Audit! Senden Sie dazu eine E-Mail an max.kronmueller@okfn.de.
