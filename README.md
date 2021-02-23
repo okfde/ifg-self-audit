@@ -1,4 +1,6 @@
-# IFG Self Audit
+# Self-Audit für Informationsfreiheit
+
+Mehr Informationen im [Blog](https://fragdenstaat.de/blog/2021/02/23/self-audit-fuer-informationsfreiheit/).
 
 ## Installation
 
