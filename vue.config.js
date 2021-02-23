@@ -10,5 +10,6 @@ module.exports = {
         }
       }
     }
-  }
+  },
+  transpileDependencies: ['jsoncrush', 'copy-text-to-clipboard']
 };

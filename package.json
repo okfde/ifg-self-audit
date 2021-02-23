@@ -5,7 +5,7 @@
   "scripts": {
     "build": "yarn build:questionnaire && yarn build:app && yarn build:excel",
     "lint": "vue-cli-service lint",
-    "build:app": "vue-cli-service build",
+    "build:app": "vue-cli-service build --modern",
     "build:excel": "node src/buildExcel.js",
     "build:questionnaire": "node src/buildQuestionnaire.js",
     "dev": "yarn dev:app & yarn dev:questionnaire",
@@ -65,8 +65,7 @@
   },
   "browserslist": [
     "last 2 versions",
-    "IE 9-11",
-    "not IE <= 8",
+    "IE 9",
     "> 0.5%"
   ]
 }
