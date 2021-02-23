@@ -12,7 +12,7 @@ yarn build # Productionbuild
 
 ## Fragen hinzufügen
 
-Die Fragen liegen unter [`src/data/questions`](https://github.com/okfde/ifg-self-audit/tree/master/src/data/questions) im Markdown-Format. Die Reihenfolge wird bestimmt durch die alphabetische Sortierung der Dateinamen (`A.md` kommt vor `B.md`).
+Die Fragen liegen unter [`src/data/questions`](https://github.com/okfde/ifg-self-audit/tree/main/src/data/questions) im Markdown-Format. Die Reihenfolge wird bestimmt durch die alphabetische Sortierung der Dateinamen (`A.md` kommt vor `B.md`).
 
 Beispieldatei:
 
@@ -40,14 +40,18 @@ Ein IFG ist aber wichtig.
 
 Dabei ist `title` der Titel der Frage. Nach dem Frontmatter kann ein Beschreibungstext zur Frage geschrieben werden.
 
-Mit `options` können die Multiple-Choice-Fragen festgelegt werden - wird es weggelassen, greifen die Standardoptionen, die unter [`src/data/defaults.yml`](https://github.com/okfde/ifg-self-audit/blob/master/src/data/defaults.yml) definiert sind. Die Punkte werden dem Gesamtpunktestand addiert, negative Werte sind möglich. Sollen keine Antwortoptionen angezeigt werden, kann `options: false` verwendet werden (etwa bei der Willkommensnachricht).
+Mit `options` können die Multiple-Choice-Fragen festgelegt werden - wird es weggelassen, greifen die Standardoptionen, die unter [`src/data/defaults.yml`](https://github.com/okfde/ifg-self-audit/blob/main/src/data/defaults.yml) definiert sind. Die Punkte werden dem Gesamtpunktestand addiert, negative Werte sind möglich. Sollen keine Antwortoptionen angezeigt werden, kann `options: false` verwendet werden (etwa bei der Willkommensnachricht).
 
 Wird nicht die Option mit der höchsten Punktzahl ausgewählt, erscheint in der Auswertung der nach `---` geschriebene Hilfstext.
 
 Mit `condition` kann eine Bedingung formuliert werden. Diese besteht aus der `id` einer vorangegangenen Frage, einem Operator `==` `!=` `<=` `>=`, sowie einer Punktzahl. Die Frage wird nur gezeigt, wenn die Punktzahl der vorangeganenen Frage mit Bedingung übereinstimmt. Die `id` ist standardmäßig der Dateiname ohne `.md`.
 
-Zudem können mit `section` mehrere Fragen gruppiert werden - alle Fragen mit derselben Angabe erscheinen in einem Schritt. Der mit `section` referenzierte Sektionstitel kann unter [`src/data/sections.yml`](https://github.com/okfde/ifg-self-audit/blob/master/src/data/sections.yml) gesetzt werden.
+Zudem können mit `section` mehrere Fragen gruppiert werden - alle Fragen mit derselben Angabe erscheinen in einem Schritt. Der mit `section` referenzierte Sektionstitel kann unter [`src/data/sections.yml`](https://github.com/okfde/ifg-self-audit/blob/main/src/data/sections.yml) gesetzt werden.
 
 ## Punktesystem
 
 Die Maximalpunktzahl ergibt sich aus den addierten Höchstpunktzahlen aller Fragen. Die niedrigste Punktzahl ist 0, selbst wenn Minuspunkte erzielt wurden.
+
+## Lizenz
+
+Der Programmcode ist [MIT-lizensiert](https://github.com/okfde/ifg-self-audit/blob/main/LICENSE), der Inhalt (Texte im Verzeichnis [`src/data/questions/`](https://github.com/okfde/ifg-self-audit/blob/main/src/data/questions/)) fällt unter [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
