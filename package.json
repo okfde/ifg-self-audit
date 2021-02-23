@@ -13,7 +13,6 @@
     "dev:questionnaire": "onchange 'src/data/**/*.md' 'src/data/**/*.yml' -- yarn build:questionnaire"
   },
   "dependencies": {
-    "@juggle/resize-observer": "^3.2.0",
     "copy-text-to-clipboard": "^3.0.0",
     "core-js": "^3.6.5",
     "excel4node": "^1.7.2",
