@@ -50,9 +50,9 @@ const store = new Vuex.Store({
       if (!state.errorsOkay) {
         let error = false;
         if (getters.section) {
-          error = !getters.section.every(q => state.answers[q.id]?.choice);
+          error = !getters.section.every(q => state.answers[q.id]?.id);
         } else {
-          error = state.answers[getters.question.id]?.choice;
+          error = state.answers[getters.question.id]?.id;
         }
 
         commit('setError', error);
