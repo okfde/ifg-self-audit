@@ -151,6 +151,7 @@ function dataFromLocalStorage() {
 }
 
 function dataFromUrl() {
+  console.log(JSONUncrush);
   const raw = decodeURIComponent(window.location.hash.slice(1));
   return JSON.parse(JSONUncrush(raw));
 }
@@ -159,6 +160,7 @@ try {
   let data = {};
 
   if (window.location.hash) {
+    console.log('HASH!');
     data = dataFromUrl();
   }
 
