@@ -10,7 +10,7 @@
       class="flex mb-1 items-center"
     >
       <input type="radio" :value="option.id" :id="option.id" v-model="choice" />
-      <label :for="option.id" class="ml-2 flex-1 mb-0">{{ option.text }}</label>
+      <label :for="option.id" class="ms-2 flex-1 mb-0">{{ option.text }}</label>
     </div>
   </div>
 </template>

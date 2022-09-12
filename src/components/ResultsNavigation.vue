@@ -5,11 +5,11 @@
         <i class="fa fa-link" />
         {{ copied ? 'Link kopiert!' : 'Link kopieren' }}
       </button>
-      <button @click="shareMail" class="btn btn-secondary btn-sm ml-2">
+      <button @click="shareMail" class="btn btn-secondary btn-sm ms-2">
         <i class="fa fa-envelope" />
         Per E-Mail versenden
       </button>
-      <button @click="print" class="btn btn-secondary btn-sm ml-2">
+      <button @click="print" class="btn btn-secondary btn-sm ms-2">
         <i class="fa fa-print" /> Drucken
       </button>
     </div>
@@ -21,7 +21,7 @@
       >
         Zurück
       </button>
-      <button @click="restart" class="btn btn-secondary btn-sm ml-2">
+      <button @click="restart" class="btn btn-secondary btn-sm ms-2">
         Neu beginnen
       </button>
     </div>

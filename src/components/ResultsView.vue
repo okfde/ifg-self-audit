@@ -30,7 +30,7 @@
         </svg>
       </div>
 
-      <p class="text-sm mt-2 text-right">
+      <p class="text-sm mt-2 text-end">
         Von {{ totalPoints }} erreichbaren Punkten haben Sie
         <strong class="font-semibold">
           {{ collectedPoints }} Punkt{{

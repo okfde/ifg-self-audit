@@ -16,7 +16,7 @@
 
     <button
       @click="$store.dispatch('nextQuestion')"
-      class="btn btn-primary ml-auto"
+      class="btn btn-primary ms-auto"
       :class="{ 'btn-error': $store.state.error }"
     >
       Weiter
