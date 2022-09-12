@@ -1,5 +1,5 @@
 <template>
-  <div class="flex mt-8" v-if="!$store.getters.done">
+  <div class="d-flex mt-3 align-items-center" v-if="!$store.getters.done">
     <transition name="fade">
       <button
         @click="$store.dispatch('previousQuestion')"
@@ -10,9 +10,9 @@
       </button>
     </transition>
 
-    <span class="block text-center flex-1">
+    <div class="text-center flex-grow-1">
       Teil {{ answeredQuestions + 1 }} von {{ totalQuestions }}
-    </span>
+    </div>
 
     <button
       @click="$store.dispatch('nextQuestion')"
@@ -50,7 +50,7 @@ export default {
 };
 </script>
 
-<style lang="postcss" scoped>
+<style scoped>
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s;

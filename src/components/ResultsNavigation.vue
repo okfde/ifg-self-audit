@@ -1,27 +1,27 @@
 <template>
-  <div class="print:hidden">
-    <div class="navgroup">
-      <button @click="copyLink" class="btn btn-primary btn-sm">
+  <div class="results-navigation">
+    <div class="d-flex mt-2 align-items-center">
+      <button @click="copyLink" class="btn btn-primary btn-sm w-100">
         <i class="fa fa-link" />
         {{ copied ? 'Link kopiert!' : 'Link kopieren' }}
       </button>
-      <button @click="shareMail" class="btn btn-secondary btn-sm ms-2">
+      <button @click="shareMail" class="btn btn-secondary btn-sm ms-2 w-100">
         <i class="fa fa-envelope" />
         Per E-Mail versenden
       </button>
-      <button @click="print" class="btn btn-secondary btn-sm ms-2">
+      <button @click="print" class="btn btn-secondary btn-sm ms-2 w-100">
         <i class="fa fa-print" /> Drucken
       </button>
     </div>
 
-    <div class="navgroup">
+    <div class="d-flex mt-2 align-items-center">
       <button
         @click="$store.dispatch('previousQuestion')"
-        class="btn btn-secondary btn-sm"
+        class="btn btn-secondary btn-sm w-100"
       >
         Zurück
       </button>
-      <button @click="restart" class="btn btn-secondary btn-sm ms-2">
+      <button @click="restart" class="btn btn-secondary w-100 btn-sm ms-2">
         Neu beginnen
       </button>
     </div>
@@ -68,12 +68,10 @@ export default {
 };
 </script>
 
-<style lang="postcss" scoped>
-.navgroup {
-  @apply flex mt-2 items-center;
-
-  > button {
-    @apply flex-1;
+<style scoped>
+@media print {
+  .results-navigation {
+    display: none;
   }
 }
 </style>

@@ -1,17 +1,17 @@
 <template>
   <div>
-    <h2 v-if="title" v-text="title" />
+    <h2 v-if="title" v-text="title" class="h3" />
 
-    <div class="mt-4 stripe-left border-red" v-if="!allQuestionsAnswered">
+    <div class="my-3 stripe-left stripe-red" v-if="!allQuestionsAnswered">
       <strong>Sie haben nicht alle Fragen beantwortet.</strong> Die Qualität der
       Ergebnisse wird besser, je mehr Fragen Sie beantworten.
     </div>
 
-    <ContentContainer :body="body" class="mb-2" />
+    <div v-html="body" class="mb-2" />
 
-    <div class="my-8">
+    <div class="my-3">
       <div
-        class="barometer"
+        class="barometer d-flex rounded"
         role="progressbar"
         aria-valuemin="0"
         :aria-valuemax="totalPoints"
@@ -44,7 +44,7 @@
     <div v-if="improvements.length !== 0" class="mt-12">
       <h2>Tipps für mehr Transparenz</h2>
 
-      <ul class="mt-6">
+      <ul class="mt-3">
         <li
           v-for="({ question }, i) in improvements"
           :key="i"
@@ -54,27 +54,40 @@
       </ul>
     </div>
 
-    <div class="mt-12">
-      <h2>Ihre Antworten</h2>
+    <div class="mt-5">
+      <h2 class="h5">Ihre Antworten</h2>
 
-      <ul class="mt-6" :class="{ cutoff: hideAnswers }">
-        <li
-          v-for="{ answer, question } in answersWithQuestions"
-          :key="question.id"
-          class="results-list"
-        >
-          <h3>{{ question.title }}</h3>
-          <p>
-            Ihre Antwort: <em>{{ answer.choice.text }}</em>
-          </p>
-        </li>
-      </ul>
+      <div
+        class="reveal-cutoff"
+        data-cutoff="3rem"
+        style="--reveal-color: var(--gray-100)"
+      >
+        <div class="reveal-inner" id="reveal-answers">
+          <ul class="mt-3 list-unstyled">
+            <li
+              v-for="{ answer, question } in answersWithQuestions"
+              :key="question.id"
+              class="results-list"
+            >
+              <h3 class="h6">{{ question.title }}</h3>
+              <p>
+                Ihre Antwort: <em>{{ answer.choice.text }}</em>
+              </p>
+            </li>
+          </ul>
+        </div>
 
-      <p class="text-center print:hidden">
-        <a href="#!" @click="hideAnswers = false" v-if="hideAnswers">
-          Antworten ansehen...
-        </a>
-      </p>
+        <div class="reveal-show">
+          <a
+            href="#!"
+            class="action-link"
+            role="button"
+            aria-controls="reveal-answers"
+            aria-expanded="false"
+            >Alle ansehen...</a
+          >
+        </div>
+      </div>
     </div>
 
     <ResultsNavigation class="mt-12" />
@@ -84,7 +97,6 @@
 <script>
 import { questionnaire, totalPoints } from '../data/questionnaire.json';
 import ResultsNavigation from './ResultsNavigation';
-import ContentContainer from './ContentContainer';
 
 const { title, body } = questionnaire[questionnaire.length - 1];
 
@@ -92,7 +104,7 @@ export default {
   data() {
     return { title, body, totalPoints, hideAnswers: true };
   },
-  components: { ContentContainer, ResultsNavigation },
+  components: { ResultsNavigation },
   computed: {
     answers() {
       ResultsNavigation;
@@ -144,27 +156,32 @@ export default {
 };
 </script>
 
-<style lang="postcss" scoped>
+<style scoped>
 .barometer {
-  @apply flex w-full h-4 rounded;
+  height: 1rem;
   background: linear-gradient(
     to right,
-    theme('colors.red'),
-    theme('colors.yellow.300'),
-    theme('colors.green')
+    var(--red),
+    var(--yellow-300),
+    var(--green)
   );
-
-  .needle {
-    @apply w-4 h-4;
-  }
 }
 
-ul {
+.barometer .needle {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* ul {
   @apply list-none pl-0;
 }
 
 .stripe-left {
   @apply border-0 border-l-4 pl-4 border-solid;
+
+  &.stripe-red {
+    border-left-color: var(--red);
+  }
 }
 
 li.results-list {
@@ -183,12 +200,8 @@ li.results-list {
     &::after {
       @apply absolute inset-0;
       content: '';
-      background: linear-gradient(
-        to bottom,
-        transparent,
-        theme('colors.gray.100')
-      );
+      background: linear-gradient(to bottom, transparent, var(--gray-100));
     }
   }
-}
+} */
 </style>

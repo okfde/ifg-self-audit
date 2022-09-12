@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { JSONCrush, JSONUncrush } from 'jsoncrush';
+import JSONCrush from 'jsoncrush/JSONCrush.js';
 
 import evaluateCondition from './evaluateCondition';
 import { questionnaire, totalPoints } from './data/questionnaire.json';
@@ -135,7 +135,7 @@ const store = new Vuex.Store({
     },
     persistantUrlData(_, getters) {
       const data = getters.persistantData;
-      return JSONCrush(JSON.stringify(data));
+      return JSONCrush.crush(JSON.stringify(data));
     },
     permalink(_, getters) {
       const url = new URL(window.location.href);
@@ -151,23 +151,20 @@ function dataFromLocalStorage() {
 }
 
 function dataFromUrl() {
-  console.log(JSONUncrush);
   const raw = decodeURIComponent(window.location.hash.slice(1));
-  return JSON.parse(JSONUncrush(raw));
+  return JSON.parse(JSONCrush.uncrush(raw));
 }
 
 try {
   let data = {};
 
-  if (window.location.hash) {
-    console.log('HASH!');
+  if (window.location.hash && window.location.hash !== '#!') {
     data = dataFromUrl();
   }
 
   if (!data.version) {
     data = dataFromLocalStorage();
   }
-
   if (data.version === version) {
     store.commit('setCurrentQuestion', data.currentQuestion);
     store.commit('setAnswers', data.answers);

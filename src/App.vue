@@ -15,31 +15,18 @@ export default {
 };
 </script>
 
-<style lang="postcss">
-@tailwind base;
-@tailwind components;
-
-@screen print {
+<style>
+@media print {
   .container,
   .row,
   .col-md-8 {
-    @apply w-full max-w-none flex-1;
+    width: 100%;
+    max-width: none;
+    flex: 1;
   }
 }
 
-.self-audit {
-  h2 {
-    font-size: 1.75rem !important;
-  }
-
-  h3 {
-    font-size: 1.25rem !important;
-  }
-
-  .btn .fa {
-    @apply mr-1;
-  }
+.btn .fa {
+  margin-right: 0.25rem;
 }
-
-@tailwind utilities;
 </style>

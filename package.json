@@ -1,6 +1,6 @@
 {
   "name": "fds-self-audit",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "private": true,
   "scripts": {
     "build": "yarn build:questionnaire && yarn build:app && yarn build:excel",
@@ -13,34 +13,31 @@
     "dev:questionnaire": "onchange 'src/data/**/*.md' 'src/data/**/*.yml' -- yarn build:questionnaire"
   },
   "dependencies": {
-    "copy-text-to-clipboard": "^3.0.0",
-    "core-js": "^3.6.5",
-    "excel4node": "^1.7.2",
-    "fs-extra": "^9.0.1",
-    "js-yaml": "^3.14.0",
-    "jsoncrush": "^0.1.0",
-    "lodash": "^4.17.20",
+    "copy-text-to-clipboard": "^3.0.1",
+    "excel4node": "^1.8.0",
+    "fs-extra": "^10.1.0",
+    "js-yaml": "^4.1.0",
+    "jsoncrush": "^1.1.8",
+    "lodash": "^4.17.21",
     "marked": "^1.2.2",
-    "tailwindcss": "^1.9.5",
     "vue": "^2.6.11",
     "vuex": "^3.4.0",
-    "yaml-front-matter": "^4.1.0"
+    "yaml-front-matter": "^4.1.1"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-optional-chaining": "^7.12.1",
-    "@vue/cli-plugin-babel": "~4.5.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.18.9",
+    "@vue/cli-plugin-babel": "~5.0.8",
     "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-plugin-vuex": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~5.0.8",
+    "@vue/cli-service": "~5.0.8",
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.1.3",
     "eslint-plugin-vue": "^6.2.2",
     "onchange": "^7.1.0",
-    "postcss-nested": "4",
     "prettier": "^1.19.1",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "2.6.12"
   },
   "eslintConfig": {
     "root": true,
@@ -65,7 +62,7 @@
   },
   "browserslist": [
     "last 2 versions",
-    "IE 9",
+    "not dead",
     "> 0.5%"
   ]
 }

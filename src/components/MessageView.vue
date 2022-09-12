@@ -1,20 +1,19 @@
 <template>
   <div>
-    <component :is="isSection ? 'h3' : 'h2'" v-text="title" />
+    <component :is="isSection ? 'h3' : 'h2'" class="h5" v-text="title" />
 
-    <ContentContainer :body="body" class="mb-4" />
+    <div v-html="body" class="mb-3" />
 
     <OptionsView :options="options" v-model="choice" />
   </div>
 </template>
 
 <script>
-import ContentContainer from './ContentContainer';
 import OptionsView from './OptionsView';
 
 export default {
   props: ['id', 'title', 'body', 'options', 'isSection'],
-  components: { ContentContainer, OptionsView },
+  components: { OptionsView },
   data() {
     return { choice: undefined };
   },

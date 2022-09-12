@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="mb-6">{{ sectionTitle }}</h2>
+    <h2 class="mb-4">{{ sectionTitle }}</h2>
 
     <MessageView
       v-for="question in section"
@@ -10,6 +10,7 @@
       :body="question.body"
       :options="question.options"
       :isSection="true"
+      class="mb-4"
     />
   </div>
 </template>

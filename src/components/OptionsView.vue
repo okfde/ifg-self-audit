@@ -1,6 +1,6 @@
 <template>
-  <div v-if="options" class="my-6">
-    <div v-if="error" class="mb-1 text-red">
+  <div v-if="options" class="my-3">
+    <div v-if="error" class="mb-1 text-danger">
       <p><strong>Fehler:</strong> Bitte wählen Sie eine der Optionen.</p>
     </div>
 
@@ -37,9 +37,3 @@ export default {
   }
 };
 </script>
-
-<style lang="postcss" scoped>
-/* input:checked + label {
-  @apply font-semibold;
-} */
-</style>

@@ -1,25 +1,19 @@
 <template>
-  <div class="bg-gray-100 print:bg-transparent" ref="top">
+  <div class="questionnaire-view" ref="top">
     <div
-      class="h-1 bg-gray-600 transition-all duration-200 ease-out print:hidden"
+      class="questionnaire-progress"
       :style="{
         width: `${progress}%`
       }"
     />
 
-    <div class="questionnaire">
+    <div class="questionnaire p-3 p-md-4 p-lg-5 overflow-hidden">
       <transition
         :name="transition === 'next' ? 'slide' : 'slide-back'"
         @enter="$refs.top.scrollIntoView()"
         mode="out-in"
       >
-        <ResultsView
-          v-if="done"
-          v-on="$listeners"
-          :totalPoints="totalPoints"
-          :answers="answers"
-          :key="question.id"
-        />
+        <ResultsView v-if="done" v-on="$listeners" :key="question.id" />
 
         <SectionView v-else-if="section" v-on="$listeners" :key="question.id" />
 
@@ -60,12 +54,28 @@ export default {
 };
 </script>
 
-<style lang="postcss" scoped>
-.questionnaire {
-  @apply p-8 overflow-hidden;
+<style scoped>
+.questionnaire-view {
+  background-color: var(--gray-100);
+}
 
-  @screen print {
-    @apply px-0;
+.questionnaire-progress {
+  height: 0.25rem;
+  background-color: var(--gray-600);
+  transition: all 0.2s ease-out;
+}
+
+@media print {
+  .questionnaire-view {
+    background-color: transparent;
+  }
+
+  .questionnaire-progress {
+    display: none;
+  }
+
+  .questionnaire {
+    padding: 0 !important;
   }
 }
 
